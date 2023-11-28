@@ -46,3 +46,108 @@ class ProfileDetail(RetrieveUpdateAPIView, CreateAPIView):
                         state_code = state_code)
         return super().perform_create(serializer)
 
+
+    test_param =openapi.Parameter("email",openapi.IN_QUERY,type=openapi.TYPE_STRING)
+    phone_param =openapi.Parameter("phone",openapi.IN_QUERY,type=openapi.TYPE_INTEGER)
+    @swagger_auto_schema(operation_summary='validating of register',manual_parameters=[test_param,phone_param],operation_description='  This class view takes phone number and email and if it does not exists already then it sends otp forfirst coming phone numbers'
+    ,responses={200:'successfull','status':"true",'detail':'infomation of what happened'})
+
+    def create(self, request, *args, **kwargs):
+        # Check if the user already has a profile
+        if self.get_object():
+            return Response(
+                {'detail': 'User already has a profile.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        return super().create(request, *args, **kwargs)
+
+
+class EditNextofKin(RetrieveUpdateAPIView):
+    def get_queryset(self):
+        return NextOfKin.objects.filter(profile=self.request.user.profile)
+    
+    serializer_class = NextofKinSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        nextofkin,_ = NextOfKin.objects.get_or_create(profile=self.request.user.profile)
+        return nextofkin
+
+class EditBank(RetrieveUpdateAPIView):
+    def get_queryset(self):
+        bank, _ = Bank.objects.get_or_create(profile = self.request.user.profile)
+        return bank
+
+    serializer_class = EditableBankSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_object(self):
+        bank, _ = Bank.objects.get_or_create(profile = self.request.user.profile)
+        return bank
+
+
+# class ListTransactions(ListAPIView, RetrieveAPIView, GenericAPIView):
+#     def get_queryset(self):
+#         user = self.request.user
+#         return Transaction.objects.filter(owner=user.profile)
+#     serializer_class = TransactionSerializer
+#     permission_classes = [permissions.IsAuthenticated]
+
+
+class AdminPanel(ListAPIView):
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    queryset = UserProfile.objects.all()
+    serializer_class = ProfileSerializer
+    filterset_fields = ['state_code', 'phone']
+    search_fields = ['state_code', 'transactions__trxid']
+    permission_classes = [permissions.IsAdminUser]
+
+
+User = get_user_model()
+
+def activate_account(request, uidb64, token):
+    try:
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            # Optionally, we will redirect the user to a success page.
+            print('done')
+            return HttpResponse("Your account has been activated successfully.")
+        else:
+            # Token is invalid
+            print('done')
+            return HttpResponse("Activation link is invalid.")
+    except (TypeError, ValueError, OverflowError, User.DoesNotExist):
+        print('done')
+        return HttpResponse("Activation link is invalid.")
+      # return render(request, 'userprofile/page.html')
+
+
+      
+# @receiver(user_registered)
+# def send_activation_email(sender, user, request, **kwargs):
+#     # Generate an activation token for the user
+#     token = default_token_generator.make_token(user)
+
+#     # Encode the user's primary key for use in the URL
+#     uid = urlsafe_base64_encode(force_bytes(user.pk))
+
+#     # Build the activation URL
+#     activation_url = f"http://localhost:8000/activation/{uid}/{token}/"
+
+#     # Send an activation email to the user
+#     subject = 'Activate Your Account'
+#     message = f'Hi {user.username},\n\nPlease activate your account by clicking the following link:\n\n{activation_url}'
+#     from_email = 'noreply@your-website.com'
+#     recipient_list = [user.email]
+
+#     # You can use Django's EmailMessage or some email library to send the email.
+#     # Here's an example using Django's EmailMessage:
+#     from django.core.mail import EmailMessage
+
+#     email = EmailMessage(subject, message, from_email, recipient_list)
+#     email.send()
+
