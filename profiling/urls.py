@@ -16,10 +16,7 @@ urlpatterns = [
     path('edit-nextofkin/', views.EditNextofKin.as_view()),
     path('adminpanel/', views.AdminPanel.as_view()),
     path('activate/<str:uidb64>/<str:token>/', views.activate_account, name='activate_account'),
-    path('', TemplateView.as_view(
-        template_name='swagger-ui.html',
-        extra_context={'schema_url':'openapi-schema'}
-    ), name='swagger-ui'),
+
 
   
         # ...
