@@ -6,8 +6,6 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework import status
-from drf_yasg import openapi
-from drf_yasg.utils import swagger_auto_schema
 from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_str
 from django.http import HttpResponse
@@ -47,10 +45,6 @@ class ProfileDetail(RetrieveUpdateAPIView, CreateAPIView):
         return super().perform_create(serializer)
 
 
-    test_param =openapi.Parameter("email",openapi.IN_QUERY,type=openapi.TYPE_STRING)
-    phone_param =openapi.Parameter("phone",openapi.IN_QUERY,type=openapi.TYPE_INTEGER)
-    @swagger_auto_schema(operation_summary='validating of register',manual_parameters=[test_param,phone_param],operation_description='  This class view takes phone number and email and if it does not exists already then it sends otp forfirst coming phone numbers'
-    ,responses={200:'successfull','status':"true",'detail':'infomation of what happened'})
 
     def create(self, request, *args, **kwargs):
         # Check if the user already has a profile
