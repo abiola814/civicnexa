@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'djoser',
     'uritemplate',
     'corsheaders',
-    'drf_yasg',
+    
 ]
 
 
