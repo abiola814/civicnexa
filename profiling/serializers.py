@@ -40,16 +40,17 @@ class NextofKinSerializer(serializers.ModelSerializer):
 #         fields = '__all__'
 
 class ProfileSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = UserProfile
-        fields = '__all__'
-        # fields = ['first_name', 'last_name', 'dob', 'state_of_origin', 'state_of_resident', 'address']
-        read_only_fields = ['user', 'first_name', 'last_name', 'middle_name','dob', 'state_of_origin', 'state_of_resident', 'state_code']
+
     bank = BankSerializer(many=True, read_only=True)
     next_of_kin = NextofKinSerializer(many=True, read_only = True)
     children = ChildrenSerializer(many=True, read_only = True)
     spouse = SpouseSerializer(many=True, read_only = True)
     parent = ParentSerializer(many=True, read_only = True)
+    class Meta:
+        model = UserProfile
+        fields = '__all__'
+        # fields = ['first_name', 'last_name', 'dob', 'state_of_origin', 'state_of_resident', 'address']
+        read_only_fields = ['user', 'first_name', 'last_name', 'middle_name','dob', 'state_of_origin', 'state_of_resident', 'state_code']
 
 class CreateProfileSerializer(serializers.ModelSerializer):
     class Meta:

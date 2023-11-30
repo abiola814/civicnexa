@@ -46,7 +46,7 @@ class UserProfile(models.Model):
     role = models.ForeignKey("Role", on_delete=models.CASCADE)
 
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f'{self.first_name} - {self.last_name}'
     
 
@@ -63,7 +63,7 @@ class Bank(models.Model):
     account_number = models.CharField(max_length=50)
     account_name = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.account_name
 
 class NextOfKin(models.Model):
@@ -73,7 +73,7 @@ class NextOfKin(models.Model):
     phone = models.CharField(max_length=100)
     address = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
     
 # class Transaction(models.Model):
@@ -103,7 +103,7 @@ class Children(models.Model):
     occupation = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 class Spouse(models.Model):
@@ -113,7 +113,7 @@ class Spouse(models.Model):
     occupation = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 
@@ -124,7 +124,7 @@ class Parent(models.Model):
     occupation = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
     
     
