@@ -1,0 +1,117 @@
+{% extends "main.html" %}
+{% load static %}
+
+            {% block content %}
+
+            <main class="overflow-x-hidden p-10">
+
+                <!-- home  -->
+                <section class="" id="page1">
+                    <section class="flex">
+                        <div class="w-4/5">
+                            <h1 class="text-[20px] font-medium mb-2">Dashboard</h1>
+    
+                            <div class="bg-[#924FFF] flex text-white py-2 px-4 rounded justify-between">
+                                <h2 class="uppercase">Oyatue55555</h2>
+                                <div class="flex items-center">
+                                    <p class="pr-2">Copy code 
+                                        
+                                    </p>
+                                    <img src="{% static 'images/copy.png' %}" alt="" class="w-[15px] h-[15px]">
+                                </div>
+                            </div>
+    
+                          <div>
+                            <div class="mt-6">
+                                <div class="flex justify-between">
+                                    <div class="bg-[#FFF2F2] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="{% static 'images/pay.png' %}" alt="">
+                                    </div>
+                                    <div class="bg-[#F3F2FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="{% static 'images/pay.png' %}" alt="">
+                                    </div>
+                                    <div class="bg-[#F2FFF3] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="{% static 'images/pay.png' %}" alt="">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="mt-6">
+                                <div class="flex justify-between">
+                                    <div class="bg-[#F7F2FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F2F2F2] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F2F4FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="view">
+                            <div class="items-center text-center">
+                                <h1 class="font-bold text-[22px]">View Prices</h1>
+                            <p class="text-[14px]">Quickly scan for prices of the service you want to pay for.</p>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="" class="mb-2 font-normal text-[16px]">Payment Category</label>
+                                    <select name="" id="">
+                                        <option value="">---Select Category---</option>
+                                    </select>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="" class="mb-2 font-normal text-[16px]">Payment Type</label>
+                                    <select name="" id="">
+                                        <option value="">---Select Category---</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="bg-[#924FFF] w-[100%] text-white justify-center flex rounded-lg">
+                                    Check
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+    
+                    <section class="w-[100%] mt-6">
+                        <h2 class="font-[500] text-[20px]">Transaction History</h2>
+                        <div class="w-[100%] mt-4">
+                            <table class="w-[100%]">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>Transaction ID</th>
+                                        <th>Service</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                <tr class="text-left">
+                                    <td>123soo568e4</td>
+                                    <td>Health Services</td>
+                                    <td>N 4,000</td>
+                                    <td>29/09/2023</td>
+                                    <td>Failed</td>
+                                    <td>></td>
+                                </tr>
+                               </tbody>
+    
+                                <tr>
+    
+                                </tr>
+                            </table>
+                        </div>
+                       
+                    </section>
+                </section>
+
+               
+    {% endblock content %}

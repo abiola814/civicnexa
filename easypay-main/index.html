@@ -1,0 +1,343 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/profile.css">
+    <link rel="stylesheet" href="./styles/modal.css">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+        rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class=" bg-[#F4F7FB] min-h-screen" style="background: #F4F7FB;">
+    <div class="flex overflow-x-hidden total">
+        <!-- sidebar  -->
+        <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#EFE5FF] h-full">
+            <a href="#"
+                class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
+                <img src="./images/image 1.png" alt="">
+            </a>
+            <div class="flex flex-col justify-between text-black h-[90vh]">
+                <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                         onclick="showPage1()">
+                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
+                        <p class="">Home</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Transactions</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        onclick="showPage2()">
+                        <div class="ico"> </div>
+                        <p class="">Payments</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Invoices</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Reports</p>
+                    </button>
+
+
+                </nav>
+                <div class="inline-flex items-center justify-center h-20 w-20 border-gray-700">
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        data-page="page2">
+                        <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
+                        <p class="">Log Out</p>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- end sidebar  -->
+
+        <div class="flex-grow text-gray-800 w-[80%]">
+            <!-- header  -->
+            <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
+                <div class="flex items-center">
+                    <div class="profile_image">
+                        <img src="./images/profile.png" alt="">
+                    </div>
+                    <h2>Adam Sola T.</h2>
+                </div>
+                <div class="flex justify-between w-2/5">
+                    <div class="inp">
+                        <!-- <i class="icon-bell" style="color: red;"></i> -->
+                        <img src="./images/search.png" alt="">
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <div class="flex items-center w-1/5 justify-between">
+                        <img src="./images/sett.png" alt="" class="w-[20px] h-[20px]">
+                        <img src="./images/bell.png" alt="" class="w-[20px] h-[20px]">
+                    </div>
+                </div>
+
+            </header>
+
+            <!-- end header -->
+
+            <main class="overflow-x-hidden p-10">
+
+                <!-- home  -->
+                <section class="" id="page1">
+                    <section class="flex">
+                        <div class="w-4/5">
+                            <h1 class="text-[20px] font-medium mb-2">Dashboard</h1>
+    
+                            <div class="bg-[#924FFF] flex text-white py-2 px-4 rounded justify-between">
+                                <h2 class="uppercase">Oyatue55555</h2>
+                                <div class="flex items-center">
+                                    <p class="pr-2">Copy code 
+                                        
+                                    </p>
+                                    <img src="./images/copy.png" alt="" class="w-[15px] h-[15px]">
+                                </div>
+                            </div>
+    
+                          <div>
+                            <div class="mt-6">
+                                <div class="flex justify-between">
+                                    <div class="bg-[#FFF2F2] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F3F2FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F2FFF3] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="mt-6">
+                                <div class="flex justify-between">
+                                    <div class="bg-[#F7F2FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F2F2F2] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                    <div class="bg-[#F2F4FF] w-[30%] h-[170px] flex justify-center items-center">
+                                        <img src="./images/pay.png" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="view">
+                            <div class="items-center text-center">
+                                <h1 class="font-bold text-[22px]">View Prices</h1>
+                            <p class="text-[14px]">Quickly scan for prices of the service you want to pay for.</p>
+                            </div>
+                            <div class="">
+                                <div class="">
+                                    <label for="" class="mb-2 font-normal text-[16px]">Payment Category</label>
+                                    <select name="" id="">
+                                        <option value="">---Select Category---</option>
+                                    </select>
+                                </div>
+                                <div class="mt-4">
+                                    <label for="" class="mb-2 font-normal text-[16px]">Payment Type</label>
+                                    <select name="" id="">
+                                        <option value="">---Select Category---</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="bg-[#924FFF] w-[100%] text-white justify-center flex rounded-lg">
+                                    Check
+                                </button>
+                            </div>
+                        </div>
+                    </section>
+    
+                    <section class="w-[100%] mt-6">
+                        <h2 class="font-[500] text-[20px]">Transaction History</h2>
+                        <div class="w-[100%] mt-4">
+                            <table class="w-[100%]">
+                                <thead>
+                                    <tr class="text-left">
+                                        <th>Transaction ID</th>
+                                        <th>Service</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                               <tbody>
+                                <tr class="text-left">
+                                    <td>123soo568e4</td>
+                                    <td>Health Services</td>
+                                    <td>N 4,000</td>
+                                    <td>29/09/2023</td>
+                                    <td>Failed</td>
+                                    <td>></td>
+                                </tr>
+                               </tbody>
+    
+                                <tr>
+    
+                                </tr>
+                            </table>
+                        </div>
+                       
+                    </section>
+                </section>
+
+
+                <!-- payment  -->
+                <section class="w-full hidden" id="page2" >
+                    <div class="flex justify-between">
+                        <h1 class="font-normal text-[32px]">Fees</h1>
+                        <img src="./images/3.png" alt="">
+                    </div>
+
+                    <section class="flex w-full justify-between">
+                        <div class="w-2/5">
+                            <div class="flex justify-between my-2">
+                                <h3>Business/Trade Operating Fees</h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between cursor-pointer" onclick="showModal()">
+                                <h3>Contract Document And Tender Fees</h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between my-2">
+                                <h3>Inspection Fees</h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between">
+                                <h3>Contract Document And Tender Fees
+                                </h3>
+                                <p>></p>
+                            </div>
+                        </div>
+
+
+                        <div class="w-2/5">
+                            <div class="flex justify-between my-2">
+                                <h3>Contractor Registration Fees
+                                </h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between">
+                                <h3>Examinations Documents Contract Tender Fees</h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between my-2">
+                                <h3>Marriage/ Divorce Fees
+
+                                </h3>
+                                <p>></p>
+                            </div>
+                            <div class="flex justify-between">
+                                <h3>Timber & Forest Fees
+                                </h3>
+                                <p>></p>
+                            </div>
+                        </div>
+                    </section>
+                </section>
+                <!-- end payment  -->
+
+                <!-- modal  -->
+                    <section style="display: none;" id="modal" class="modal fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
+                        <div class="inn-modal">
+                            <h1 class="text-center">Pay for <span>Contract Document and Legal Fees</span></h1>
+                            <div class="mt-6">
+                                <p>Who are you making the payment for?</p>
+                               
+                                    <div class="flex mt-2">
+                                        <input type="radio" id="payment" name="payment">
+                                        <p class="pl-2">Myself</p>
+                                    </div>
+                                    <div class="flex mt-2">
+                                        <input type="radio" id="payment" name="payment">
+                                        <p class="pl-2">Someone Else</p>
+                                    </div>
+                            </div>
+
+                            <div class="btn">
+                                <button class="b-btn bg-[#D5D5D5] mr-4" onclick="closeModal()">Cancel</button>
+                                <button class="b-btn bg-[#924FFF]" onclick="showReceipt()">Continue</button>
+                            </div>
+
+                        </div>
+                    </section>
+                <!-- end modal  -->
+
+                  <!-- receipt  -->
+                  <section style="display: none;" id="modall" class="modal fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
+                    <div class="inn-modal">
+                        <div class="text-center border-b-#333">
+                            <h1 class="text-center text-[20px] font-[400]">Payment Successful !!!</span></h1>
+                        <p class=" text-[26px] font-[500]">N 1909.92</p>
+                        </div>
+                        <div class="mt-6 flex justify-between">
+                            <div class="text-[#757575] text-[16px]">
+                                <p>Name</p>
+                                <p>State ID</p>
+                                <p>Transaction ID</p>
+                                <p>Service</p>
+                                <p>Time</p>
+                            </div>
+                            <div class="text-[#1C1C1C] text-[16px]">
+                                <p>Adam Sola T.</p>
+                                <p class="uppercase">Oyatue55555</p>
+                                <p>Q5pnPdV8XqbK1A</p>
+                                <p>Contract Document and Legal Fees</p>
+                                <p>20:02  23/11/2023</p>
+                            </div>
+                        </div>
+
+                        <div class="btnn">
+                            
+                            <button class="b-bt bg-[#924FFF] flex" onclick="closeModall()">
+                                <p class="pr-2">Print Receipt</p>
+                                <img src="./images/print.png" alt="" class="w-4">
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+            <!-- end receipt  -->
+
+            </main>
+        </div>
+    </div>
+
+    <script src="./js/index.js"></script>
+</body>
+
+</html>

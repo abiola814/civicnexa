@@ -16,10 +16,10 @@ class Payment(models.Model):
     ]
     profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     amount = models.PositiveIntegerField()
-    # email = models.EmailField()
+    email = models.EmailField()
     ref = models.CharField(max_length=200)
     fee_type = models.CharField(max_length=200)
-    # name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200)
     state_ID = models.CharField(max_length=200)
     verified = models.BooleanField(default=False)
     status = models.CharField(max_length=20, choices=STATUSES, default='pending', null=True, blank=True)

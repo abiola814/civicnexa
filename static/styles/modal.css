@@ -1,0 +1,47 @@
+.modal{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.inn-modal{
+    /* background-image: url('../images/back.png'); */
+    background: #fff;
+    position: relative;
+    border-radius: 20px;
+    height: 300px;
+    width: 600px;
+    padding-left: 8%;
+    padding-right: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.b-btn{
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+    color: #fff;
+    font-size: 18px;
+}
+.btn{
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+    margin-top: 20px;
+}
+.btnn{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.b-bt{
+    border-radius: 8px;
+    width: 150px;
+    height: 40px;
+    color: #fff;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

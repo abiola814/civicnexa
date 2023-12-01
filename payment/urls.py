@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
+
 app_name='payments'
+
+
 urlpatterns = [
-    path('', views.initiate_payment, name="initiate-payment"),
-    path('<str:ref>/', views.verify_payment, name="verify-payment"),
+    path('initiate/<str:fee>', views.initiate_payment, name="initiate-payment"),
+    path('verify/<str:ref>/', views.verify_payment, name="verify-payment"),
+    path('requestlogin/<str:email>', views.requestLogin, name='request'),
+    path('payment', views.payment, name='payment'),
 ]

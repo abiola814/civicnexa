@@ -4,6 +4,7 @@ from django.http.response import HttpResponse
 from django.urls import reverse
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth import login, logout, authenticate
 
 from profiling.models import UserProfile
 from .models import Payment
@@ -16,8 +17,101 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 import os
+from django.contrib.auth.models import User
+from profiling.models import UserProfile
+
+def initiate_payment(request: HttpRequest, fee) -> HttpResponse:
+    # if request.method == "POST":
+    amount = 100
+    # payer = request.POST['for']
+    # state_code = request.POST['state_code']
+    fee_type= request.POST.get('fee')
+    owner = 'Myself'
+    # state_ID= request.POST.get('state')
 
 
+    if owner == 'yself':
+        print('if')
+        profile = request.user.profile
+        email = request.user.email
+        
+        state_ID = UserProfile.objects.filter(state_code=profile.state_code)
+        state_ID = 'hehsjrj'
+
+    elif owner == 'Someone Else':
+        print('elif')
+        if UserProfile.objects.filter(state_code=state_ID).exists():
+            user=UserProfile.objects.get(state_code=state_ID)
+            name= f'{user.first_name} {user.last_name}' 
+    else:
+        print('else')
+        messages.error(
+            request,
+            "please check again state id does not exist",
+        )
+        # return render(request, "connector.html", {'fee':fee_type})
+    
+    print('==============================================================================================')
+    print(amount, fee, state_ID, profile.first_name)
+
+    pay = Payment.objects.create(amount=amount,fee_type=fee,state_ID=state_ID,profile=profile)
+    if pay:
+        return render(request, 'receipt.html', {'payment': pay, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
+    # pays = Payment.objects.get(ref=pay.ref)
+    return render(request, 'index.html', {'payment': pay, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY, 'fee':fee})
+
+    return render(request, "connector.html",{'fee':fee})
+
+def requestLogin(request, email):
+    user = User.objects.filter(email=email).first()
+    profile = UserProfile.objects.filter(user=user).first()
+    # if request.method == 'POST':
+    if user is not None:
+        login(request, user)
+        # return redirect('general')
+    else:
+        messages.error('Invalid user')
+
+
+    if request.method == 'POST':
+        amount = 10000
+        payer = request.POST['payment']
+        fee = request.POST['fee']
+
+        print(payer)
+        if payer == 'myself':
+            print('if')
+            profile = request.user.profile
+            email = request.user.email
+            
+            
+            state_ID = UserProfile.objects.filter(state_code=profile.state_code).first()
+            if not state_ID:
+                state_ID = 'hehsjrj'
+
+        elif payer == 'Someone Else':
+            print('elif')
+            if UserProfile.objects.filter(state_code=state_ID).exists():
+                user=UserProfile.objects.get(state_code=state_ID)
+                name= f'{user.first_name} {user.last_name}' 
+        else:
+            print('else')
+            messages.error(
+                request,
+                "please check again state id does not exist",
+            )
+            return render(request, "indexing.html",)
+        
+        print(amount, fee, state_ID, profile.first_name)
+
+        pay = Payment.objects.create(amount=amount,fee_type=fee,state_ID=state_ID,profile=profile,email=email)
+    
+        return render(request, 'invoice.html', {'payment': pay, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
+
+    return render(request, 'indexing.html', {'profile': profile})
+
+def payment(request):
+    return render(request, 'payments.html')
 
 def licences(request):
     return render(request, 'licences.html',)
@@ -45,28 +139,6 @@ def connect(request,fee):
         d=True
     return render(request, 'connector.html', {'fee':fee,'d':d})
 
-def initiate_payment(request: HttpRequest) -> HttpResponse:
-    if request.method == "POST":
-        email = request.user.email
-        amount = 100
-        fee_type= request.POST.get('fee')
-        state_ID= request.POST.get('state')
-        state_ID= request.POST.get('state')
-        if UserProfile.objects.filter(state_code=state_ID).exists():
-            user=UserProfile.objects.get(state_code=state_ID)
-            name= f'{user.first_name} {user.last_name}' 
-        else:
-            messages.error(
-                request,
-                "please check again state id does not exist",
-            )
-            return render(request, "connector.html", {'fee':fee_type})
-
-        pay = Payment.objects.create(name=name,email=email,amount=amount,fee_type=fee_type,state_ID=state_ID)
-        # pays = Payment.objects.get(ref=pay.ref)
-        return render(request, 'reciept.html', {'payment': pay, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
-
-    return render(request, "connector.html",{'fee':fee_type})
 
 def verify_payment(request, ref: str):
     trxref = request.GET["trxref"]
@@ -108,7 +180,7 @@ def verify_payment(request, ref: str):
         })
         to_email = ['government1.irs@gmail.com', request.user.email] #user.email
         context_dict = {
-            'user': request.user.profile.full_name,
+            'user': f'{request.user.profile.first_name} {request.user.profile.last_name}',
             'orderid': payment.ref,
             'amount': payment.amount,
             'fee': payment.fee_type,
@@ -134,6 +206,6 @@ def verify_payment(request, ref: str):
   
     else:
         messages.warning(request, "Sorry, your payment could not be confirmed.")
-    return render(request, "connector.html")
+    return render(request, "reciept.html")
 
 

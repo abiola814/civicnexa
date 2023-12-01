@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/invoice.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+</head>
+<body class=" bg-[red] min-h-screen" style="background: #EFE5FF;">
+  
+    <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4 bg-white">
+        <div class="flex items-center">
+            <div class="profile_image">
+                <img src="./images/profile.png" alt="">
+            </div>
+            <h2>{{payment.profile.first_name}}</h2>
+        </div>
+        <div class="flex justify-between w-2/5">
+            <div class="inp">
+                <!-- <i class="icon-bell" style="color: red;"></i> -->
+                <img src="./images/search.png" alt="">
+                <input type="text" placeholder="Search">
+            </div>
+            <div class="flex items-center w-1/5 justify-between">
+                <img src="./images/sett.png" alt="" class="w-[20px] h-[20px]">
+                <img src="./images/bell.png" alt="" class="w-[20px] h-[20px]">
+            </div>
+        </div>
+
+    </header>
+    <div class="flex flex-col items-center justify-center">
+        <div class="inv">
+            <h1 class="font-[500] text-[22px] text-center">Payment Invoice</h1>
+            <div class="mt-6 flex justify-between">
+                <div class="text-[#757575] text-[16px] mr-8">
+                    <p class="my-2">Name</p>
+                    <p>Email</p>
+                    <p class="my-2">State ID</p>
+                    <p>Transaction ID</p>
+                    <p class="my-2">Fee Type</p>
+                    <p>Date Created</p>
+                    {% comment %} <p class="my-2">Reference Number</p> {% endcomment %}
+                </div>
+                <div class="text-[#1C1C1C] text-[16px]">
+                    <p class="my-2">{{payment.profile.first_name}}</p>
+                    <p>{{payment.email}}</p>
+                    <p class="uppercase my-2">{{payment.profile.state_code}}</p>
+                    <p>{{payment.ref}}</p>
+                    <p class="my-2">{{payment.fee_type}}</p>
+                    <p>{{payment.date_created}}</p>
+                    {% comment %} <p class="my-2">12ed3456tfyu</p> {% endcomment %}
+                </div>
+            </div>
+
+            <div class="btnn">
+                            
+                {% comment %} <button class="b-bt bg-[#924FFF] flex" onclick="payWithPaystack()">
+                    <p class="pr-2">Continue To Payment</p>
+                </button> {% endcomment %}
+                <a href="/"  class="btn btn-danger">Home</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+
+
+
+</html>
