@@ -70,6 +70,7 @@ DJOSER = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,6 +99,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Civicnexa.wsgi.application'
 
+# CORS Development settings
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = [
+    "https://user-profilling.vercel.app",
+    "http://localhost:8080",
+    "http://localhost:80",
+    "http://localhost:5173",
+    "http://localhost",
+    "http://127.0.0.1"
+]
+
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
