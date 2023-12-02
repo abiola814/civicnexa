@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'profiling',
     'payment',
+    'adminpanel',
     'rest_framework',
     'djoser',
     'uritemplate',
