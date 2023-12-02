@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              cats: 'url("https://res.cloudinary.com/mindset/image/upload/v1701524709/Onboard_Screen_tgcf5m.png")',
+            },
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body>
+    <main class="bg-cats">
+      <div class="flex flex-col justify-center items-center h-[120vh]">
+        <img
+          src="https://res.cloudinary.com/mindset/image/upload/v1701523698/logo_ttcvzp.png"
+          alt=""
+          className="my-8"
+        />
+        <h1 class="text-center">
+          Revolutionizing governance through Innovative and <br />
+          transparent digital solutions
+        </h1>
+
+        <div
+          class="mt-8 flex flex-col border w-[500px] justify-center text-center items-center h-[200px] shadow-lg shadow-[#FAFAFA]-500/50 rounded-lg"
+        >
+          <p>User Dashboard</p>
+          <a href="https://user-profilling.vercel.app" target="_blank">
+            <button
+              class="bg-[#EBAC0A] text-white p-3 rounded-lg text-[20px] mt-10"
+            >
+              View Project
+            </button>
+          </a>
+        </div>
+
+        <div
+          class="mt-10 flex flex-col border w-[500px] justify-center text-center items-center h-[200px] shadow-lg shadow-[#FAFAFA]-500/100 rounded-lg"
+        >
+          <a href="/government" target="_blank">
+            <p>Government Dashboard</p>
+            <button
+              class="bg-[#EBAC0A] text-white p-3 rounded-lg text-[20px] mt-10"
+            >
+              View Project
+            </button>
+          </a>
+        </div>
+      </div>
+    </main>
+  </body>
+  <script>
+    function redirectToGoogle() {
+      window.location.href = "https://www.google.com";
+    }
+  </script>
+</html>
