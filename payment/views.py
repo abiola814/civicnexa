@@ -70,8 +70,7 @@ def requestLogin(request, email):
         login(request, user)
         # return redirect('general')
     else:
-        messages.error('Invalid user')
-
+        messages.error(request,'Invalid user')
 
     if request.method == 'POST':
         amount = 10000
