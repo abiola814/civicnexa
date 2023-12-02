@@ -39,6 +39,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("",view.landing,name="landing"),
     path('profiling/', include('profiling.urls')),
+     path('government/', include('adminpanel.urls')),
     path('payment/', include('payment.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
