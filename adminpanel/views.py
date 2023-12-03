@@ -38,7 +38,7 @@ def getProfile(request):
     profile, search_query = searchForProfile(request)
     nextofkin = NextOfKin.objects.filter(profile=profile).first()
     bank = Bank.objects.filter(profile=profile).first()
-    print(nextofkin.address)
+
     context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank}
     return render (request,'adminpanel/index.html', context)
 
