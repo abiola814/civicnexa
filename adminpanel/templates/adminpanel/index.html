@@ -104,6 +104,202 @@
 
                 <!-- home  -->
                     {% if page == 'home' %}
+
+                    {% if profile %}  
+                    <!-- accounts  -->
+                    <section style="" id="page2">
+                        <div class="flex justify-between">
+                            <div>
+                                <p>State Code</p>
+                                <h1 class="font-[500]">{{profile.state_code}}</h1>
+                            </div>
+                            <div>
+                                <button class="text-[#15A362] text-[16px]">View Transaction</button>
+                            </div>
+                        </div>
+                        <form action="" class="per">
+                            <div class="mt-10 ">
+                                <div class="border-b border-[#D5D5D5] pb-10">
+                                    <h1 class="font-[500]">Personal Information</h1>
+                                    <div class="flex">
+                                        <div class="w-1/2">
+                                            <div class="mt-6 flex">
+                                                <p for="" clasfs="w-[20%]">First Name</p>
+                                                <input type="text" disabled value={{profile.first_name}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[20%]">Last Name</p>
+                                                <input type="text" disabled value={{profile.last_name}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[20%]">Other Name</p>
+                                                <input type="text" disabled value={{profile.middle_name}}>
+                                            </div>
+                                            <div class="mt-6">
+                                                <label for="">Email Address</label>
+                                                <input type="email" value={{profile.user.email}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[20%]">Nin</p>
+                                                <input type="number" disabled value={{profile.bank.nin}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[20%]">Gender</p>
+                                                <select name="" id="">
+                                                    <option value=""></option>
+                                                    <option value="">Male</option>
+                                                    <option value="">Female</option>
+                                                </select>
+                                            </div>
+    
+                                        </div>
+                                        <div class="w-1/2">
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[23%]">Occupation</p>
+                                                <input type="text"  value={{profile.occupation}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[23%]">Phone Number</p>
+                                                <input type="" disabled value={{profile.phone}}>
+                                            </div>
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[23%]">Date of Birth</p>
+                                                <input type="" disabled value={{profile.dob}}>
+                                            </div>
+    
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[23%]">Married Status</p>
+                                                <select name="" id="">
+                                                    <option value="{{profile.marital_status}}"></option>
+                                                    <option value="">Single</option>
+                                                    <option value="">Married</option>
+                                                    <option value="">Divorced</option>
+                                                    {% comment %} <option value="">Divorced</option> {% endcomment %}
+                                                </select>
+                                            </div>
+    
+                                            <div class="mt-6 flex">
+                                                <p for="" class="w-[23%]">home Address</p>
+                                                <textarea name="" id="" cols="30" rows="10" value={{profile.address}}></textarea>
+                                            </div>
+    
+                                        </div>
+                                    </div>
+    
+                                </div>
+    
+                                <!-- next of kin  -->
+                                <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
+                                    <div class="w-1/2">
+                                        <h1 class="font-[500]">Next of Kin Details</h1>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Name</p>
+                                            <input type="" value={{profile.next_of_kin.name}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Relationship: {{profile.next_of_kin.relationship}}</p>
+                                            <input type="text" disabled value="{{profile.next_of_kin.relationship}}">
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Phone Number</p>
+                                            <input type="number" disabled value={{profile.next_of_kin.phone}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Address</p>
+                                            <textarea name="" id="" cols="30" rows="10" disabled value={{profile.next_of_kin.address}}></textarea>
+                                        </div>
+    
+                                    </div>
+
+                                    {% if profile.relative %}
+                                    <div class="w-1/2 ">
+                                        <h1 class="font-[500]">Relative Details</h1>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Name</p>
+                                            <input type="text">
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Relationship</p>
+                                            <input type="number">
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Name</p>
+                                            <input type="text">
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Relationship</p>
+                                            <input type="number">
+                                        </div>
+    
+    
+    
+                                    </div>
+                                    {% endif %}
+                                </div>
+    
+                                <!-- bank info  -->
+                                <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
+                                    {% if request.user.profile.role == 'Finance' %}
+                                    <div class="w-1/2">
+                                        <h1 class="font-[500]">Bank Information</h1>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Account Name</p>
+                                            <input type="text" disabled value={{profile.bank.account_name}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Bank Name</p>
+                                            <input type="text" disabled value={{profile.bank.bank_name}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Account Number</p>
+                                            <input type="number" disabled value={{profile.bank.account_number}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">BVN</p>
+                                            <input type="number" disabled value={{profile.bank.bvn}}>
+                                        </div>
+                                    </div>
+
+                                    {%endif%}
+
+                                    {% if request.user.profile.role == 'Health' %}
+                                    <div class="w-1/2 ">
+                                        <h1 class="font-[500]">Health Information</h1>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Blood Group</p>
+                                            <input type="text" disabled vlaue={{profile.bloodgroup}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Genotype</p>
+                                            <input type="number" disabled vlaue={{profile.genotype}}>
+                                        </div>
+                                        <div class="mt-6 flex">
+                                            <p for="" class="w-[23%]">Documents</p>
+                                            <input type="text">
+                                        </div>
+    
+                                    </div>
+                                    {% endif %}
+                                </div>
+    
+                                <!-- security info  -->
+                                {% if request.user.profile.role == 'Security' %}
+    
+                                <div class="flex mt-10">
+                                    <div class="w-1/2">
+                                        <h1 class="font-[500]">Security Information</h1>
+                                       <img src="./image/doc.png" alt="">
+    
+                                    </div>
+                                 
+                                </div>
+                                {% endif %}
+                            </div>
+                        </form>
+                    </section>
+                    <!-- end accounts  -->
+                    {% else %}
+
                     <section class="flex flex-col justify-center items-center">
                         <div class="flex flex-col items-center">
                             <div>
@@ -163,6 +359,10 @@
                             </div>
                         </div>
                     </section>
+
+                    {% endif %}
+
+
                     {% endif %}
 
                     <!-- transaction  -->
@@ -217,6 +417,9 @@
                     </section>
                     <!-- end transaction  -->
                     {% endif %}
+
+
+              
 
 
                 <!-- payment  -->

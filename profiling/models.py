@@ -67,7 +67,7 @@ class Bank(models.Model):
         return self.account_name
 
 class NextOfKin(models.Model):
-    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='next_of_kin')
+    profile = models.ForeignKey(UserProfile, on_delete=models.CASCADE, related_name='nextofkin')
     name = models.CharField(max_length=50)
     relationship = models.CharField(max_length=100)
     phone = models.CharField(max_length=100)

@@ -26,7 +26,8 @@ def searchForProfile(request):
     Q(phone__icontains=search_query) |
     Q(user__username__icontains=search_query)
     ).first()
-
+    print(profile.bank)
+    print(profile.first_name)
     return profile, search_query
 
 def getProfile(request):

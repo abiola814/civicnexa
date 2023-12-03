@@ -45,3 +45,37 @@
     background-color: transparent;
     margin-left: 10px;
 }
+
+.btn {
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-size: 18px;
+    font-size: 20px;
+    width: 25%;
+    border-radius: 10px;
+    margin-right: 10px;
+    outline: none;
+  }
+  
+  /* Style the active class, and buttons on mouse-over */
+  .active, .btn:hover {
+    background-color: #15A362;
+    color: white;
+    font-size: 20px;
+    outline: none;
+    /* width: 268px; */
+  }
+  .per input, select, textarea{
+    background-color: #F5F5F5;
+    height: 30px;
+    padding: 5px;
+    border: solid 1px #000;
+    border-radius: 8px;
+    width: 300px;
+  }
+  .per label{
+    width: 200px;
+  }
