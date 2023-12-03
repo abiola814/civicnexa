@@ -26,8 +26,9 @@ def searchForProfile(request):
     Q(phone__icontains=search_query) |
     Q(user__username__icontains=search_query)
     ).first()
-    print(profile.bank)
-    print(profile.first_name)
+    # if profile:
+    #     nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    #     # print(profile.first_name)
     return profile, search_query
 
 def getProfile(request):
@@ -35,7 +36,10 @@ def getProfile(request):
     if not request.user.is_authenticated:
         return redirect('login')
     profile, search_query = searchForProfile(request)
-    context = {'profile': profile, 'search_query': search_query, 'page':page}
+    nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    bank = Bank.objects.filter(profile=profile).first()
+    print(nextofkin.address)
+    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank}
     return render (request,'adminpanel/index.html', context)
 
 
