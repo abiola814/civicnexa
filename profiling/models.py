@@ -43,7 +43,7 @@ class UserProfile(models.Model):
     state_code = models.CharField(max_length=20, editable=False, null=True)
     bloodgroup = models.CharField(max_length=3, choices=BLOOD_GROUP, null=True)
     genotype = models.CharField(max_length=3, choices=GENOTYPE, null=True)
-    role = models.ForeignKey("Role", on_delete=models.CASCADE)
+    role = models.ForeignKey("Role", default=1, on_delete=models.CASCADE)
 
 
     def __str__(self) -> str:
