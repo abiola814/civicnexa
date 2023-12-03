@@ -1,4 +1,5 @@
 from typing import List, Optional
+from django.shortcuts import render
 from django.http import HttpResponse
 from django.utils.encoding import force_str
 from django.views import View
@@ -90,6 +91,9 @@ class AdminPanel(ListAPIView):
 
 User = get_user_model()
 
+def verifypage(request):
+    return render(request, 'verify.html')
+
 def activate_account(request, uidb64: str, token: str) -> HttpResponse:
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
@@ -98,8 +102,9 @@ def activate_account(request, uidb64: str, token: str) -> HttpResponse:
         if default_token_generator.check_token(user, token):
             user.is_active = True
             user.save()
-            print('done')
-            return HttpResponse("Your account has been activated successfully.")
+            return render(request, 'verify.html')
+            # print('done')
+            # return HttpResponse("Your account has been activated successfully.")    
         else:
             print('done')
             return HttpResponse("Activation link is invalid.")

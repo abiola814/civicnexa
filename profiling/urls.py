@@ -10,6 +10,7 @@ from rest_framework.schemas import get_schema_view
 
 urlpatterns = [
     path('', views.ProfileDetail.as_view()),
+    path('verified', views.verifypage),
     path('getprofile/<str:user__email>', views.GetProfileApi.as_view()),
     # path('transactions/', views.ListTransactions.as_view()),
     path('edit-bank/', views.EditBank.as_view()),
