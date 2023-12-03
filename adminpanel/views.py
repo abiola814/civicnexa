@@ -15,6 +15,7 @@ def profile(request):
     return render(request,'adminpanel/adminprofile.html', context)
 
 def searchForProfile(request):
+
     search_query = "?"   # so that nothing is return from the query at first
 
     if request.GET.get('search_query'):
@@ -29,11 +30,12 @@ def searchForProfile(request):
     return profile, search_query
 
 def getProfile(request):
+    page='home'
     if not request.user.is_authenticated:
         return redirect('login')
     profile, search_query = searchForProfile(request)
-    context = {'profile': profile, 'search_query': search_query}
-    return render (request,'adminpanel/account.html', context)
+    context = {'profile': profile, 'search_query': search_query, 'page':page}
+    return render (request,'adminpanel/index.html', context)
 
 
 def searchForTransaction(request):
@@ -71,6 +73,7 @@ def searchForTransaction(request):
     return transactions, search_query, pending_transactions, paid_transactions, failed_transactions
 
 def getTransaction(request):
+    page = 'transaction'
     if not request.user.is_staff:
         return redirect('login')
     
@@ -79,8 +82,8 @@ def getTransaction(request):
     transactions, search_query, pending_transactions, paid_transactions, failed_transactions = searchForTransaction(request)
  
     context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
-               ,'failed_transactions': failed_transactions,}
-    return render (request,'adminpanel/orders.html',context)
+               ,'failed_transactions': failed_transactions, 'page':page}
+    return render (request,'adminpanel/index.html',context)
 
 
 def loginPage(request):

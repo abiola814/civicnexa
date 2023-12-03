@@ -1,0 +1,237 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/profile2.css' %}">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+        rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class=" bg-[#F4F7FB] min-h-screen" style="background: #F4F7FB;">
+    <div class="flex overflow-x-hidden total">
+        <!-- sidebar  -->
+        <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full">
+            <a href="{% url 'adminpanel' %}"
+                class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
+                <img src="{% static 'image/image 1.png' %}" alt="">
+            </a>
+            <div class="flex flex-col justify-between text-black h-[90vh]">
+                <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                         onclick="showPage1()">
+                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
+                        <p class="">Overview</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Accounts</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        onclick="showPage3()">
+                        <div class="ico"> </div>
+                        <a href='{% url "transactions" %}'><p class="">Transactions</p></a>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Settings</p>
+                    </button>
+                  
+
+
+                </nav>
+                <div class="inline-flex items-center justify-center h-20 w-20 border-gray-700">
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        data-page="page2">
+                        <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
+                        <p class="">Log Out</p>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- end sidebar  -->
+
+        <div class="flex-grow text-gray-800 w-[80%]">
+            <!-- header  -->
+            <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
+                <div class="flex items-center">
+                    <div class="profile_image">
+                        <img src="{% static 'image/profile.png' %}" alt="">
+                    </div>
+                    <h2>Adam Sola T.</h2>
+                </div>
+                <div class="flex justify-between w-2/5">
+                    <div class="inp">
+                        <!-- <i class="icon-bell" style="color: red;"></i> -->
+                        <img src="{% static 'image/search.png' %}" alt="">
+                        <input type="text" name="search_query" placeholder="Search">
+                    </div>
+                    <div class="flex items-center w-1/5 justify-between">
+                        <img src="{% static 'image/sett.png' %}" alt="" class="w-[20px] h-[20px]">
+                        <img src="{% static 'image/bell.png' %}" alt="" class="w-[20px] h-[20px]">
+                    </div>
+                </div>
+
+            </header>
+
+            <!-- end header -->
+
+            <main class="overflow-x-hidden p-10">
+
+                <!-- home  -->
+                    {% if page == 'home' %}
+                    <section class="flex flex-col justify-center items-center">
+                        <div class="flex flex-col items-center">
+                            <div>
+                                <div class="text-center mon">
+                                    <h1 class="font-[500] text-[40px]">1,096,073</h1>
+                                    <p>Registered Users</p>
+                                </div>
+                                <div style="display: flex; justify-content: flex-end;">
+                                    <button class="text-[#15A362] text-[16px]" >View more</button>
+                                </div>
+                            </div>
+                            <form>
+                                <div class="inpp mt-8">
+                                    <!-- <i class="icon-bell" style="color: red;"></i> -->
+                                    <img src="{% static 'image/search.png' %}" alt="" class="w-5">
+                                    <input type="text" name="search_query" placeholder="Input details e.g. name, state code">
+                                </div>
+                                <button class="bg-[#15A362] p-2 text-white rounded-lg text-[16px] w-[200px] mt-6">Search Profile</button>
+                            </form>
+                            {% comment %} {% if request.user.profile.role == 'general' %} {% endcomment %}
+                            <p>or</p>
+                        
+                            <a href='{% url "transactions" %}'><button class="text-[#15A362] text-[16px]">Get Transaction History</button></a>
+                            {% comment %} {% endif %} {% endcomment %}
+                            <div>
+
+                            </div>
+                           
+                        </div>
+                        <div class="w-full mt-8">
+                            <div class="flex justify-between w-full">
+                                <h2 class="font-[500]">Recent Searches</h2>
+                                <button class="text-[#15A362] text-[16px]">View more</button>
+                            </div>
+                            <div class="bg-[#F5F5F5] flex justify-between w-full p-4">
+                                <div>
+                                    <p>Sola Eletu</p>
+                                    <p>Sola Eletu</p>
+                                    <p>Sola Eletu</p>
+                                    <p>Sola Eletu</p>
+                                    <p>Sola Eletu</p>
+                                </div>
+                                <div>
+                                    <p>OYATUE555555</p>
+                                    <p>OYATUE555555</p>
+                                    <p>OYATUE555555</p>
+                                    <p>OYATUE555555</p>
+                                    <p>OYATUE555555</p>
+                                </div>
+                                <div>
+                                    <p>></p>
+                                    <p>></p>
+                                    <p>></p>
+                                    <p>></p>
+                                    <p>></p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    {% endif %}
+
+                    <!-- transaction  -->
+                    {% if page == 'transaction' %}
+                    <section style="" id="page3">
+                        <div>
+                            <h1 class="font-[500] text-[28px] text-center mb-10">TRANSACTIONS</h1>
+                        </div>
+                        <div class="flex justify-between" id="myDIV">
+                            <button class="btn active">All</button>
+                            <button class="btn">Completed</button>
+                            <button class="btn">Pending</button>
+                            <button class="btn">Failed</button>
+                        </div>
+
+                        <section class="w-[100%] mt-6">
+                            <h2 class="font-[500] text-[20px]">Transaction History</h2>
+                            <div class="w-[100%] mt-4">
+                                <table class="w-[100%]">
+                                    <thead>
+                                        <tr class="text-left">
+                                            <th>Transaction ID</th>
+                                            <th>Service</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Payer</th>
+                                            <th>Status</th>
+                                            <!-- <th></th> -->
+                                        </tr>
+                                    </thead>
+                                   <tbody>
+                                    {% for transaction in transactions %}
+                                    <tr class="text-left">
+                                        <td>{{transaction.ref}}</td>
+                                        <td>{{transaction.fee_type}}</td>
+                                        <td>N {{transaction.amount}}</td>
+                                        <td>{{transaction.created}}</td>
+                                        <td>{{transaction.profile.first_name}} {{transaction.profile.last_name}}</td>
+                                        <td>{{transaction.status}}</td>
+                                        <!-- <td>></td> -->
+                                    </tr>
+                                    {% endfor %}
+                                   </tbody>
+        
+                                    <tr>
+        
+                                    </tr>
+                                </table>
+                            </div>
+                           
+                        </section>
+                    </section>
+                    <!-- end transaction  -->
+                    {% endif %}
+
+
+                <!-- payment  -->
+                
+                <!-- end payment  -->
+
+                
+
+                
+
+            </main>
+        </div>
+    </div>
+
+    <script src="{% static 'js/index2.js' %}"></script>
+</body>
+
+</html>
