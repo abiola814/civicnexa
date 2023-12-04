@@ -321,11 +321,11 @@
                                 </div>
                                 <button class="bg-[#15A362] p-2 text-white rounded-lg text-[16px] w-[200px] mt-6">Search Profile</button>
                             </form>
-                            {% comment %} {% if request.user.profile.role == 'general' %} {% endcomment %}
+                            {% if bankpermission %}
                             <p>or</p>
                         
                             <a href='{% url "transactions" %}'><button class="text-[#15A362] text-[16px]">Get Transaction History</button></a>
-                            {% comment %} {% endif %} {% endcomment %}
+                            {% endif %}
                             <div>
 
                             </div>
