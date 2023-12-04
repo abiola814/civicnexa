@@ -4,7 +4,7 @@ from payment.models import Payment
 from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.messages import add_message ,constants
+from django.contrib import messages
 import requests
 import math
 
@@ -39,7 +39,20 @@ def getProfile(request):
     nextofkin = NextOfKin.objects.filter(profile=profile).first()
     bank = Bank.objects.filter(profile=profile).first()
 
-    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank}
+    bankpermission = False
+    healthpermission = False
+    securitypermission = False
+
+    if request.user.profile.role.title in ['General', 'Finance']:
+        bankpermission = True
+    if request.user.profile.role.title in ['General', 'Health']:
+        healthpermission = True
+    if request.user.profile.role.title in ['General', 'Security']:
+        securitypermission = True
+
+
+    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank,
+               'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
     return render (request,'adminpanel/index.html', context)
 
 
@@ -106,7 +119,7 @@ def loginPage(request):
             user = User.objects.get(username = username)
 
         except:
-            add_message(request,constants.ERROR, "User does not exist.")
+            messages.error(request, "User does not exist.")
             print('user doest not exist')
 
         user = authenticate(username = username, password = password)
@@ -117,7 +130,7 @@ def loginPage(request):
             return redirect(request.GET['next'] if 'next' in request.GET else 'adminpanel')
 
         else:
-            add_message(request,constants.ERROR, "You are not an admin.")
+            messages.error(request, "You are not an admin.")
             print('something went wrong')
 
     context = {'page': page,}

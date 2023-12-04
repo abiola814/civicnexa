@@ -68,7 +68,7 @@
                         className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
                         data-page="page2">
                         <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
-                        <p class="">Log Out</p>
+                        <a href='{% url "logout" %}'><p class="">Log Out</p></a>
                     </button>
                 </div>
             </div>
@@ -141,7 +141,7 @@
                                             </div>
                                             <div class="mt-6 flex">
                                                 <p for="" class="w-[20%]">Nin</p>
-                                                <input type="number" disabled value={{profile.bank.nin}}>
+                                                <input type="number" disabled value={{bank.BVN}}>
                                             </div>
                                             <div class="mt-6 flex">
                                                 <p for="" class="w-[20%]">Gender</p>
@@ -169,7 +169,7 @@
     
                                             <div class="mt-6 flex">
                                                 <p for="" class="w-[23%]">Married Status</p>
-                                                <select name="" id="">
+                                                <select name="" id="" value="{{profile.marital_status}}">
                                                     <option value="{{profile.marital_status}}"></option>
                                                     <option value="">Single</option>
                                                     <option value="">Married</option>
@@ -180,7 +180,7 @@
     
                                             <div class="mt-6 flex">
                                                 <p for="" class="w-[23%]">home Address</p>
-                                                <textarea name="" id="" cols="30" rows="10" value={{profile.address}}></textarea>
+                                                <textarea name="" id="" cols="30" rows="10" value={{profile.address}}>{{profile.address}}</textarea>
                                             </div>
     
                                         </div>
@@ -206,7 +206,7 @@
                                         </div>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">Address</p>
-                                            <textarea name="" id="" cols="30" rows="10" disabled value={{nextofkin.address}}></textarea>
+                                            <textarea name="" id="" cols="30" rows="10" disabled value={{nextofkin.address}}>{{nextofkin.address}}</textarea>
                                         </div>
     
                                     </div>
@@ -228,7 +228,7 @@
                                         </div>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">Relationship</p>
-                                            <input type="number">
+                                            <input type="text">
                                         </div>
     
     
@@ -239,7 +239,8 @@
     
                                 <!-- bank info  -->
                                 <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
-                                    {% if request.user.profile.role == 'Finance' %}
+                                    {% if bankpermission %}
+                                    {% comment %} {% if request.user.profile.role == 'Finance' %} {% endcomment %}
                                     <div class="w-1/2">
                                         <h1 class="font-[500]">Bank Information</h1>
                                         <div class="mt-6 flex">
@@ -256,22 +257,22 @@
                                         </div>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">BVN</p>
-                                            <input type="number" disabled value={{bank.bvn}}>
+                                            <input type="number" disabled value={{bank.BVN}}>
                                         </div>
                                     </div>
 
                                     {%endif%}
 
-                                    {% if request.user.profile.role == 'Health' %}
+                                    {% if healthpermission %}
                                     <div class="w-1/2 ">
                                         <h1 class="font-[500]">Health Information</h1>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">Blood Group</p>
-                                            <input type="text" disabled vlaue={{profile.bloodgroup}}>
+                                            <input type="text" disabled value={{profile.bloodgroup}}>
                                         </div>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">Genotype</p>
-                                            <input type="number" disabled vlaue={{profile.genotype}}>
+                                            <input type="text" disabled value={{profile.genotype}}>
                                         </div>
                                         <div class="mt-6 flex">
                                             <p for="" class="w-[23%]">Documents</p>
@@ -283,7 +284,8 @@
                                 </div>
     
                                 <!-- security info  -->
-                                {% if request.user.profile.role == 'Security' %}
+                                {% comment %} {% if request.user.profile.role == 'Security' %} {% endcomment %}
+                                {% if securitypermission %}
     
                                 <div class="flex mt-10">
                                     <div class="w-1/2">
