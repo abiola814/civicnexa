@@ -62,12 +62,16 @@ def initiate_payment(request: HttpRequest, fee) -> HttpResponse:
 
     return render(request, "connector.html",{'fee':fee})
 
-def requestLogin(request, email):
-    user = User.objects.filter(email=email).first()
-    profile = UserProfile.objects.filter(user=user).first()
+def requestLogin(request, state_code):
+    profile = UserProfile.objects.filter(state_code=state_code).first()
+    user = User.objects.filter(profile=profile).first()
+    
+    print(user)
+    print(profile)
     # if request.method == 'POST':
     if user is not None:
         login(request, user)
+        print(user)
         # return redirect('general')
     else:
         messages.error(request,'Invalid user')
