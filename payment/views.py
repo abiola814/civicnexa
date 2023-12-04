@@ -211,6 +211,6 @@ def verify_payment(request, ref: str):
   
     else:
         messages.warning(request, "Sorry, your payment could not be confirmed.")
-    return render(request, "reciept.html")
+    return redirect('payments:request', request.user.profile.state_code)
 
 

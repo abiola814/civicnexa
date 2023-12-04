@@ -166,8 +166,11 @@ STATIC_URL = 'static/'
 MEDIA_URL ='media/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
-PAYSTACK_PUBLIC_KEY =os.getenv('PAYSTACK_PUBLIC_KEY')
+# PAYSTACK_SECRET_KEY = os.getenv('PAYSTACK_SECRET_KEY')
+# PAYSTACK_PUBLIC_KEY =os.getenv('PAYSTACK_PUBLIC_KEY')
+
+PAYSTACK_SECRET_KEY='sk_test_caa8f3383c28e100a27362a87b481d03fe49e434'
+PAYSTACK_PUBLIC_KEY='pk_test_2c3ee11abea710c598f4c80d9d3feaced804bd0e'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
