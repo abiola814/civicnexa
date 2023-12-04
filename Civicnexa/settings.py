@@ -57,7 +57,7 @@ INSTALLED_APPS = [
 DJOSER = {
             'SEND_ACTIVATION_EMAIL': True,
             'USER_CREATE_PASSWORD_RETYPE': True,
-            'ACTIVATION_URL': 'api/profiling/activate/{uid}/{token}/',
+            'ACTIVATION_URL': 'profiling/activate/{uid}/{token}/',
             'EMAIL':{
                 'activation': 'djoser.email.ActivationEmail',
             },
