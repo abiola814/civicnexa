@@ -153,10 +153,12 @@ def verify_payment(request, ref: str):
     payment: Payment = get_object_or_404(Payment, ref=ref)
     
     if payment.verify_payment():
+        payment.status = 'paid'
+        payment.save()
         messages.success(
             request, f"Payment Completed Successfully, NGN #{payment.amount}."
         )
-        user = UserProfile.objects.filter(state_code = payment.state_ID).only('first_name', 'email')
+        # user = UserProfile.objects.filter(state_code = payment.state_ID).only('first_name', 'email')
         template = get_template('invoicetwo.html')
         data = {
             'order_id': payment.ref,
