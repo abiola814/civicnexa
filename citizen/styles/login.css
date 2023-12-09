@@ -4,7 +4,7 @@
     padding: 5px;
     width: 80%;
 }
-.finpp input{
+.finpp input,textarea,select, option{
     border: solid 1px #EBEBEB;
     margin-top: 6px;
     padding: 5px;

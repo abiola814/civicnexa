@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,95 +9,146 @@
     <link rel="stylesheet" href="./styles/login.css">
 </head>
 </head>
+
 <body>
     <section class=" p-4">
-       <div class="flex w-full">
-        <div class="w-1/2 p-4 hidden md:block">
-            <img src="./images/Rectangle.png" alt="" class="">
-        </div>
-        <div class="flex flex-col justify-center w-full md:w-1/2">
-            <div class="flex flex-col items-center text-center  justify-center">
-                <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+        <div class="flex w-full">
+            <div class="w-1/2 p-4 hidden md:block">
+                <img src="./images/Rectangle.png" alt="" class="">
             </div>
-            <form action="POST">
-                   <div class="flex flex-col justify-between">
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">First Name</label>
-                        <input type="text" placeholder="Enter Your First Name">
-                    </div>
-                    <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
-                        <label for="" class="text-[18px]">Last Name</label>
-                        <input type="text" placeholder="Enter Your Last Name">
-                    </div>
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">Other Names</label>
-                        <input type="text" placeholder="Enter Your Other Name">
-                    </div>
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">Phone No.</label>
-                        <input type="number" placeholder="Enter Your Phone Number">
-                    </div>
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">NIN</label>
-                        <input type="number" placeholder="Enter Your NIN">
-                    </div>
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">Date Of Birth</label>
-                        <input type="date" placeholder="Enter Your Date Of Birth">
-                    </div>
+            <div class="flex flex-col justify-center w-full md:w-1/2">
+                <div class="flex flex-col items-center text-center  justify-center">
+                    <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+                </div>
+                <form action="POST">
+                    <div class="flex flex-col justify-between">
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">First Name</label>
+                            <input type="text" placeholder="Enter Your First Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
+                            <label for="" class="text-[18px]">Last Name</label>
+                            <input type="text" placeholder="Enter Your Last Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Other Names</label>
+                            <input type="text" placeholder="Enter Your Other Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Phone No.</label>
+                            <input type="number" placeholder="Enter Your Phone Number">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">NIN</label>
+                            <input type="number" placeholder="Enter Your NIN">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Date Of Birth</label>
+                            <input type="date" placeholder="Enter Your Date Of Birth">
+                        </div>
                         <div>
                             <div class="flex mt-6">
                                 <label for="">Gender</label>
-                               <div class="ml-[10%] flex justify-between w-[40%]">
-                                <div class="flex">
-                                    <input type="radio" name="gender">
-                                    <p>Male</p>
+                                <div class="ml-[10%] flex justify-between w-[40%]">
+                                    <div class="flex">
+                                        <input type="radio" name="gender">
+                                        <p>Male</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" name="gender">
+                                        <p>Female</p>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <input type="radio" name="gender">
-                                    <p>Female</p>
-                                </div>
-                               </div>
                             </div>
                             <div class="flex mt-6">
                                 <label for="">Marital Status</label>
-                               <div class="ml-[10%] flex justify-between w-[50%]">
-                                <div class="flex">
-                                    <input type="radio" name="marital">
-                                    <p>Single</p>
+                                <div class="ml-[10%] flex justify-between w-[50%]">
+                                    <div class="flex">
+                                        <input type="radio" name="marital">
+                                        <p>Single</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" name="marital">
+                                        <p>Married</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" name="marital">
+                                        <p>Divorced</p>
+                                    </div>
                                 </div>
-                                <div class="flex">
-                                    <input type="radio" name="marital">
-                                    <p>Married</p>
-                                </div>
-                                <div class="flex">
-                                    <input type="radio" name="marital">
-                                    <p>Divorced</p>
-                                </div>
-                               </div>
                             </div>
                         </div>
 
-                    <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
-                        <label for="" class="text-[18px]">Occupation</label>
-                        <input type="text" placeholder="Enter Your Occupation">
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Occupation</label>
+                            <input type="text" placeholder="Enter Your Occupation">
+                        </div>
+
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">State Of Origin</label>
+                            <select name="" id="">
+                                <option value="">--Select state--</option>
+                                <option value="AB">Abia State</option>
+                                <option value="AD">Adamawa State</option>
+                                <option value="AK">Akwa Ibom State</option>
+                                <option value="AN">Anambra State</option>
+                                <option value="BA">Bauchi State</option>
+                                <option value="BY">Bayelsa State</option>
+                                <option value="BE">Benue State</option>
+                                <option value="BO">Borno State</option>
+                                <option value="CR">Cross River State</option>
+                                <option value="DE">Delta State</option>
+                                <option value="EB">Ebonyi State</option>
+                                <option value="ED">Edo State</option>
+                                <option value="EK">Ekiti State</option>
+                                <option value="EN">Enugu State</option>
+                                <option value="FC">Federal Capital Territory</option>
+                                <option value="GO">Gombe State</option>
+                                <option value="IM">Imo State</option>
+                                <option value="JI">Jigawa State</option>
+                                <option value="KD">Kaduna State</option>
+                                <option value="KN">Kano State</option>
+                                <option value="KT">Katsina State</option>
+                                <option value="KE">Kebbi State</option>
+                                <option value="KO">Kogi State</option>
+                                <option value="KW">Kwara State</option>
+                                <option value="LA">Lagos</option>
+                                <option value="NA">Nasarawa State</option>
+                                <option value="NI">Niger State</option>
+                                <option value="OG">Ogun State</option>
+                                <option value="ON">Ondo State</option>
+                                <option value="OS">Osun State</option>
+                                <option value="OY">Oyo State</option>
+                                <option value="PL">Plateau State</option>
+                                <option value="SO">Sokoto State</option>
+                                <option value="TA">Taraba State</option>
+                                <option value="YO">Yobe State</option>
+                                <option value="ZA">Zamfara State</option>
+                            </select>
+                        </div>
+
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Home Address</label>
+                            <textarea type="text" placeholder=""> </textarea>
+                        </div>
                     </div>
-                  
-                   </div>
 
                     <div>
                         <button class="rounded bg-[#008080] w-[100%] md:w-[90%]  text-white p-2 mt-6">Continue</button>
                     </div>
 
-                   
-            </form>
+
+                </form>
+            </div>
         </div>
-       </div>
-       <footer class="pl-4">
-        <div>Powered by Civicnexa software © <script>new Date().getFullYear()>2017&&document.write(new Date().getFullYear());</script></div>
-  
-       </footer>
+        <footer class="pl-4">
+            <div>Powered by Civicnexa software ©
+                <script>new Date().getFullYear() > 2017 && document.write(new Date().getFullYear());</script>
+            </div>
+
+        </footer>
     </section>
-    
+
 </body>
+
 </html>
