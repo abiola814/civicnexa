@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./styles/login.css">
+</head>
+</head>
+<body>
+    <section class=" p-4">
+       <div class="flex w-full">
+        <div class="w-1/2 p-4 hidden md:block">
+            <img src="./images/Rectangle.png" alt="" class="">
+        </div>
+        <div class="flex flex-col justify-center w-full md:w-1/2">
+            <div class="flex flex-col items-center text-center  justify-center">
+                <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+            </div>
+            <form action="POST">
+                   <div class="flex flex-col justify-between">
+                    <div class="finp flex flex-col">
+                        <label for="" class="text-[18px]">Email</label>
+                        <input type="email" placeholder="Enter Your Email Address">
+                    </div>
+                    <div class="finp flex flex-col">
+                        <label for="" class="text-[18px]">Phone Number/ E-mail/ Health Code</label>
+                        <input type="password" placeholder="Enter Your Password">
+                    </div>
+                    <div class="finp flex flex-col">
+                        <label for="" class="text-[18px]">Confirm Password</label>
+                        <input type="password" placeholder="Enter Your Password">
+                    </div>
+                  
+                   </div>
+
+                    <div>
+                        <button class="rounded bg-[#008080] w-[100%] md:w-[80%]  text-white p-2 mt-6">Verify</button>
+                    </div>
+
+                   
+            </form>
+        </div>
+       </div>
+       <footer class="pl-4">
+        <div>Powered by Civicnexa software © <script>new Date().getFullYear()>2017&&document.write(new Date().getFullYear());</script></div>
+  
+       </footer>
+    </section>
+    
+</body>
+</html>
