@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
 </head>
 </head>
 
@@ -20,19 +21,27 @@
                 <div class="flex flex-col items-center text-center  justify-center">
                     <h1 class="text-3xl font-bold ">Generate Health Code</h1>
                 </div>
-                <form action="POST">
+                <form method="POST">
+                    {% csrf_token %}
                     <div class="flex flex-col justify-between">
-                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                        {% comment %} <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Full Name</label>
                             <input type="text" placeholder="Enter Your Full Name">
-                        </div>
+                        </div> {% endcomment %}
 
 
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Blood group</label>
-                            <select name="" id="">
-                                <option value="">--Select state--</option>
-
+                            <select name="blood_group" id="">
+                                <option value="">--Select Blood Group--</option>
+                                <option value="AB positive">AB positive</option>
+                                <option value="B positive">B positive</option>
+                                <option value="A positive">A positive</option>
+                                <option value="O positive">O positive</option>
+                                <option value="AB negative">AB negative</option>
+                                <option value="B negative">B negative</option>
+                                <option value="A negative">A negative</option>
+                                <option value="O negative">O negative</option>
                             </select>
                         </div>
                         <div>
@@ -73,7 +82,7 @@
                     </div>
 
                     <div>
-                        <button class="rounded bg-[#008080] w-[100%] md:w-[90%]  text-white p-2 mt-6">Continue</button>
+                        <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[90%]  text-white p-2 mt-6">Continue</button>
                     </div>
 
 

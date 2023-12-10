@@ -33,8 +33,10 @@ def register(request):
         )
 
         login(request, user)
-        return redirect('continue_reg')
+        return redirect('personaldetail')
     
+
+    return render(request, 'signup.html')
 
 def personalDetails(request):
     user = request.user
@@ -42,12 +44,12 @@ def personalDetails(request):
     if request.method == 'POST':
         first_name = request.POST['first_name']
         last_name = request.POST['last_name']
-        other_name = request.POST['other_name']
+        middle_name = request.POST['middle_name']
         phone = request.POST['phone']
         nin = request.POST['nin']
         dob = request.POST['dob']
         gender = request.POST['gender']
-        marital_status = request.POST['marital_status']
+        marital_status = request.POST['marital']
         occupation = request.POST['occupation']
         state_of_origin = request.POST['state_of_origin']
         address = request.POST['address']
@@ -56,7 +58,7 @@ def personalDetails(request):
             user = user,
             first_name = first_name,
             last_name = last_name,
-            other_name = other_name,
+            middle_name = middle_name,
             phone = phone,
             nin = nin,
             dob = dob,
@@ -66,9 +68,14 @@ def personalDetails(request):
             state_of_origin = state_of_origin,
             address = address,
             # first_name = first_name,
-        )        
+        )
+    
         # first_name = request.POST['first_name']
         # first_name = request.POST['first_name']
+
+        return redirect('nextofkin')
+    return render(request, 'personaldetails.html')
+    
 
 def nextofKin(request):
     if request.method == 'POST':
@@ -93,9 +100,14 @@ def nextofKin(request):
             address=address
         )
 
-        Relatives.objects.bulk_create(
-            profile = request.user.profile
-        )
+        return redirect('healthinfo')
+
+        # Relatives.objects.bulk_create(
+        #     profile = request.user.profile
+        # )
+    
+    return render(request, 'nok.html')
+
 
 def healthInfo(request):
     profile = request.user.profile
@@ -104,12 +116,22 @@ def healthInfo(request):
         blood_group = request.POST['blood_group']
         genotype = request.POST['genotype']
 
-        profile.blood_group = blood_group
+        profile.bloodgroup = blood_group
         profile.genotype = genotype
         profile.save()
 
+        return redirect('face')
 
+
+    return render(request, 'blood.html')
+    
         
+def face(request):
+    return render(request, 'face.html')
+
+
+def finger(request):
+    return render(request, 'finger.html')
 
 def loginPage(request):
 
@@ -142,21 +164,25 @@ def loginPage(request):
 
         if user is not None:
             login(request, user)
-            return redirect(request.GET['next'] if 'next' in request.GET else 'adminpanel')
+            return redirect('profile')
+            # return redirect(request.GET['next'] if 'next' in request.GET else 'profile')
 
         else:
             messages.error(request, "Something went wrong.")
             print('something went wrong')
 
     context = {'page': page,}
-    return render(request, 'adminpanel/login.html', context)
+    return render(request, 'index.html', context)
 
 
 # Create your views here.
 def profile(request):
+    # profile = Profile.objects.prefetch_related('nextofkin').filter(user = request.user).first() #prefetch related
     profile = Profile.objects.filter(user = request.user).first() #prefetch related
-    context = {'profile': profile}
-    return render(request,'adminpanel/adminprofile.html', context)
+    nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    print(profile.bloodgroup)
+    context = {'profile': profile, 'nextofkin': nextofkin}
+    return render(request, 'profile.html', context)
 
 def searchForProfile(request):
 

@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,34 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./styles/login.css">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
 </head>
 </head>
 <body>
     <section class=" p-4">
        <div class="flex w-full">
         <div class="w-1/2 p-4 hidden md:block">
-            <img src="./images/Rectangle.png" alt="" class="">
+            <img src="{% static 'images/Rectangle.png' %}" alt="" class="">
         </div>
         <div class="flex flex-col justify-center w-full md:w-1/2">
             <div class="flex flex-col items-center text-center  justify-center">
                 <h1 class="text-3xl font-bold ">Welcome Back!</h1>
             </div>
-            <form action="POST" class="flex flex-col">
+            <form method="POST" class="flex flex-col">
+                {% csrf_token %}
                     <div class="finp flex flex-col">
                         <label for="" class="text-[18px]">Phone Number/ E-mail/ Health Code</label>
-                        <input type="text" placeholder="Phone Number/ E-mail/ Health Code">
+                        <input type="text" name='username' placeholder="Phone Number/ E-mail/ Health Code">
                     </div>
                     <div class="finp flex flex-col">
                         <label for="" class="text-[18px]">Password</label>
-                        <input type="password" placeholder="Enter Your Password">
+                        <input type="password" name='password' placeholder="Enter Your Password">
                     </div>
                     <div>
                         <a class="underline capitalize text-[#008080] text-[18px] mt-6 cursor-pointer">Forgot password</a>
                     </div>
 
                     <div>
-                        <button class="rounded bg-[#008080] w-[100%] md:w-[80%] text-white p-2 mt-6">Log In</button>
+                        <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[80%] text-white p-2 mt-6">Log In</button>
                     </div>
 
                     <div class="flex justify-between w-[100%] md:w-[80%] items-center mt-8">
@@ -42,7 +44,7 @@
                     </div>
 
                     <div>
-                        <button class="rounded border border-[#008080] w-[100%] md:w-[80%] text-black p-2 mt-6">Generate Health Code</button>
+                        <button class="rounded border border-[#008080] w-[100%] md:w-[80%] text-black p-2 mt-6"><a href="{% url 'register' %}">Generate Health Code</a></button>
                     </div>
             </form>
         </div>

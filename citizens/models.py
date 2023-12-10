@@ -43,6 +43,7 @@ class Profile(models.Model):
     state_of_origin = models.CharField(max_length=100)
     # state_of_resident = models.CharField(max_length=100)
     address = models.CharField(max_length=100, null=True)
+    nin = models.CharField(max_length=11, null=True)
     phone = models.CharField(max_length=50)
     occupation = models.CharField(max_length=100, null=True)
     marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS, null=True)
