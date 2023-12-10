@@ -53,6 +53,17 @@ class Profile(models.Model):
     role = models.ForeignKey("Role", default=1, on_delete=models.CASCADE, null=True)
 
 
+
+    def save(self, *args, **kwargs):
+        if not self.health_code:
+         
+            self.health_code = (
+                f"{self.state_of_origin[:2]}{self.first_name[:2]}{self.last_name[:2]}{self.phone[-5:]}"
+            ).upper()
+
+        super(Profile, self).save(*args, **kwargs)
+
+
     def __str__(self) -> str:
         return f'{self.first_name} - {self.last_name}'
     
