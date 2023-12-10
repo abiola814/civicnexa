@@ -28,6 +28,13 @@ body{
     height: 1px;
     border: solid .5px #000;
 }
+.cov{
+    background: url('../images/Frame.png');
+    /* background-position: center; */
+    height: 100%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
 
 @media screen and (max-width: 600px){
     .finp input{
