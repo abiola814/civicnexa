@@ -12,6 +12,8 @@ urlpatterns = [
     path('healthinfo', views.healthInfo, name='healthinfo'),
     path('', views.loginPage, name='login'),
     path('profile', views.profile, name='profile'),
+    path('profile', views.face, name='face'),
+    path('profile', views.finger, name='finger'),
     # path('', views.loginPage, name='login'),
     path('logout', views.logoutuser, name='logout'),
 

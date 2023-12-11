@@ -138,7 +138,7 @@ def loginPage(request):
     page = 'login'
 
     if request.user.is_authenticated:
-        return redirect('login')
+        return redirect('profile')
 
     if request.method == "POST":
         username = request.POST['username'].lower()
@@ -177,106 +177,105 @@ def loginPage(request):
 
 # Create your views here.
 def profile(request):
-    # profile = Profile.objects.prefetch_related('nextofkin').filter(user = request.user).first() #prefetch related
     profile = Profile.objects.filter(user = request.user).first() #prefetch related
     nextofkin = NextOfKin.objects.filter(profile=profile).first()
     print(profile.bloodgroup)
     context = {'profile': profile, 'nextofkin': nextofkin}
     return render(request, 'profile.html', context)
 
-def searchForProfile(request):
-
-    search_query = "?"   # so that nothing is return from the query at first
-
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-
-    profile = Profile.objects.distinct().filter(
-    Q(state_code__icontains=search_query) |
-    Q(phone__icontains=search_query) |
-    Q(user__username__icontains=search_query)
-    ).first()
-    # if profile:
-    #     nextofkin = NextOfKin.objects.filter(profile=profile).first()
-    #     # print(profile.first_name)
-    return profile, search_query
-
-def getProfile(request):
-    page='home'
-    if not request.user.is_authenticated:
-        return redirect('login')
-    profile, search_query = searchForProfile(request)
-    nextofkin = NextOfKin.objects.filter(profile=profile).first()
-    bank = Bank.objects.filter(profile=profile).first()
-
-    bankpermission = False
-    healthpermission = False
-    securitypermission = False
-
-    if request.user.profile.role.title in ['General', 'Finance']:
-        bankpermission = True
-    if request.user.profile.role.title in ['General', 'Health']:
-        healthpermission = True
-    if request.user.profile.role.title in ['General', 'Security']:
-        securitypermission = True
-
-
-    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank,
-               'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
-    return render (request,'adminpanel/index.html', context)
-
-
-def searchForTransaction(request):
-    search_query = ""   # so that nothing is return from the query
-
-    if request.GET.get('search'):
-        search_query = request.GET.get('search')
-
-    transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    )
-
-    paid_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'completed')
-
-    pending_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'pending')
-
-    failed_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'failed')
-
-    return transactions, search_query, pending_transactions, paid_transactions, failed_transactions
-
-def getTransaction(request):
-    page = 'transaction'
-    if not request.user.is_staff:
-        return redirect('login')
-    
- 
-    # houses = House.objects.all()
-    transactions, search_query, pending_transactions, paid_transactions, failed_transactions = searchForTransaction(request)
- 
-    context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
-               ,'failed_transactions': failed_transactions, 'page':page}
-    return render (request,'adminpanel/index.html',context)
-
-
-
 
 def logoutuser(request):
     logout(request)
     return redirect('login')
+
+# def searchForProfile(request):
+
+#     search_query = "?"   # so that nothing is return from the query at first
+
+#     if request.GET.get('search_query'):
+#         search_query = request.GET.get('search_query')
+
+#     profile = Profile.objects.distinct().filter(
+#     Q(state_code__icontains=search_query) |
+#     Q(phone__icontains=search_query) |
+#     Q(user__username__icontains=search_query)
+#     ).first()
+    # if profile:
+    #     nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    #     # print(profile.first_name)
+    # return profile, search_query
+
+# def getProfile(request):
+#     page='home'
+#     if not request.user.is_authenticated:
+#         return redirect('login')
+#     profile, search_query = searchForProfile(request)
+#     nextofkin = NextOfKin.objects.filter(profile=profile).first()
+#     bank = Bank.objects.filter(profile=profile).first()
+
+#     bankpermission = False
+#     healthpermission = False
+#     securitypermission = False
+
+#     if request.user.profile.role.title in ['General', 'Finance']:
+#         bankpermission = True
+#     if request.user.profile.role.title in ['General', 'Health']:
+#         healthpermission = True
+#     if request.user.profile.role.title in ['General', 'Security']:
+#         securitypermission = True
+
+
+#     context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank,
+#                'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
+#     return render (request,'adminpanel/index.html', context)
+
+
+# def searchForTransaction(request):
+#     search_query = ""   # so that nothing is return from the query
+
+#     if request.GET.get('search'):
+#         search_query = request.GET.get('search')
+
+#     transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     )
+
+#     paid_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'completed')
+
+#     pending_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'pending')
+
+#     failed_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'failed')
+
+#     return transactions, search_query, pending_transactions, paid_transactions, failed_transactions
+
+# def getTransaction(request):
+#     page = 'transaction'
+#     if not request.user.is_staff:
+#         return redirect('login')
+    
+ 
+#     # houses = House.objects.all()
+#     transactions, search_query, pending_transactions, paid_transactions, failed_transactions = searchForTransaction(request)
+ 
+#     context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
+#                ,'failed_transactions': failed_transactions, 'page':page}
+#     return render (request,'adminpanel/index.html',context)
+
+
 
 
 # def getTransactionsApi(request):
