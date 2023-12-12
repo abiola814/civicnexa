@@ -23,7 +23,7 @@ def register(request):
 
 
         if User.objects.filter(email=email).exists():
-            messages.error('email already exist')
+            messages.error(request,'email already exist')
             return redirect('register')
 
         user = User.objects.create(
