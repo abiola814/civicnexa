@@ -8,6 +8,7 @@
     <title>Signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+    <link rel="stylesheet" href="./styles/login.css">
 </head>
 </head>
 
@@ -20,6 +21,9 @@
             <div class="flex flex-col justify-center w-full md:w-1/2">
                 <div class="flex flex-col items-center text-center  justify-center">
                     <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+                </div>
+                <div class="my-4">
+                    <img src="./images/two.png" alt="">
                 </div>
                 <form method="POST">
                     {% csrf_token %}                        
