@@ -1,20 +1,19 @@
-{% load static %}
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Profiling</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles/profile2.css' %}">
-    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
-        rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="{% static 'styles1/login.css' %}">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    backgroundImage:{
+        'cats': 'url(./)'
+      },
                     colors: {
                         clifford: '#da373d',
                     }
@@ -23,420 +22,31 @@
         }
     </script>
 </head>
-
-<body class=" bg-[#F4F7FB] min-h-screen" style="background: #F4F7FB;">
-    <div class="flex overflow-x-hidden total">
-        <!-- sidebar  -->
-        <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full">
-            <a href="{% url 'adminpanel' %}"
-                class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
-                <img src="{% static 'image/image 1.png' %}" alt="">
-            </a>
-            <div class="flex flex-col justify-between text-black h-[90vh]">
-                <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
-
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                         onclick="showPage1()">
-                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
-                        <p class="">Overview</p>
-                    </button>
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        >
-                        <div class="ico"> </div>
-                        <p class="">Accounts</p>
-                    </button>
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        onclick="showPage3()">
-                        <div class="ico"> </div>
-                        <a href='{% url "transactions" %}'><p class="">Transactions</p></a>
-                    </button>
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        >
-                        <div class="ico"> </div>
-                        <p class="">Settings</p>
-                    </button>
-                  
+<body>
+    <main class="flex justify-center h-[100vh]">
+        <div class="mt-10">
+            <img src="{% static 'images1/logo.png' %}" alt="">
+            <div>
+                <h1 class="text-center text-[24px] font-[500] mt-10">Personnel Login</h1>
 
 
-                </nav>
-                <div class="inline-flex items-center justify-center h-20 w-20 border-gray-700">
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        data-page="page2">
-                        <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
-                        <a href='{% url "logout" %}'><p class="">Log Out</p></a>
-                    </button>
-                </div>
+                <form action="" class="mt-10">
+                    <div class="flex flex-col form">
+                        <label for="">Username</label>
+                        <input type="text" placeholder="Enter Your Username">
+                    </div>
+
+                    <div class="flex flex-col form mt-8">
+                        <label for="">Password</label>
+                        <input type="password" placeholder="Enter Your Username">
+                    </div>
+
+                    <div class="mt-10">
+                        <button class="bg-[#15A362] text-white w-[100%] p-2 rounded-lg">Login</button>
+                    </div>
+                </form>
             </div>
-        </aside>
-        <!-- end sidebar  -->
-
-        <div class="flex-grow text-gray-800 w-[80%]">
-            <!-- header  -->
-            <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
-                <div class="flex items-center">
-                    <div class="profile_image">
-                        <img src="{% static 'image/profile.png' %}" alt="">
-                    </div>
-                    <h2>Adam Sola T.</h2>
-                </div>
-                <div class="flex justify-between w-2/5">
-                    <div class="inp">
-                        <!-- <i class="icon-bell" style="color: red;"></i> -->
-                        <img src="{% static 'image/search.png' %}" alt="">
-                        <input type="text" name="search_query" placeholder="Search">
-                    </div>
-                    <div class="flex items-center w-1/5 justify-between">
-                        <img src="{% static 'image/sett.png' %}" alt="" class="w-[20px] h-[20px]">
-                        <img src="{% static 'image/bell.png' %}" alt="" class="w-[20px] h-[20px]">
-                    </div>
-                </div>
-
-            </header>
-
-            <!-- end header -->
-
-            <main class="overflow-x-hidden p-10">
-
-                <!-- home  -->
-                    {% if page == 'home' %}
-
-                    {% if profile %}  
-                    <!-- accounts  -->
-                    <section style="" id="page2">
-                        <div class="flex justify-between">
-                            <div>
-                                <p>State Code</p>
-                                <h1 class="font-[500]">{{profile.state_code}}</h1>
-                            </div>
-                            <div>
-                                <button class="text-[#15A362] text-[16px]">View Transaction</button>
-                            </div>
-                        </div>
-                        <form action="" class="per">
-                            <div class="mt-10 ">
-                                <div class="border-b border-[#D5D5D5] pb-10">
-                                    <h1 class="font-[500]">Personal Information</h1>
-                                    <div class="flex">
-                                        <div class="w-1/2">
-                                            <div class="mt-6 flex">
-                                                <p for="" clasfs="w-[20%]">First Name</p>
-                                                <input type="text" disabled value={{profile.first_name}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[20%]">Last Name</p>
-                                                <input type="text" disabled value={{profile.last_name}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[20%]">Other Name</p>
-                                                <input type="text" disabled value={{profile.middle_name}}>
-                                            </div>
-                                            <div class="mt-6">
-                                                <label for="">Email Address</label>
-                                                <input type="email" value={{profile.user.email}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[20%]">Nin</p>
-                                                <input type="number" disabled value={{bank.BVN}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[20%]">Gender</p>
-                                                <select name="" id="">
-                                                    <option value=""></option>
-                                                    <option value="">Male</option>
-                                                    <option value="">Female</option>
-                                                </select>
-                                            </div>
-    
-                                        </div>
-                                        <div class="w-1/2">
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[23%]">Occupation</p>
-                                                <input type="text"  value={{profile.occupation}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[23%]">Phone Number</p>
-                                                <input type="" disabled value={{profile.phone}}>
-                                            </div>
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[23%]">Date of Birth</p>
-                                                <input type="" disabled value={{profile.dob}}>
-                                            </div>
-    
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[23%]">Married Status</p>
-                                                <select name="" id="" value="{{profile.marital_status}}">
-                                                    <option value="{{profile.marital_status}}">{{profile.marital_status}}</option>
-                                                    <option value="">Single</option>
-                                                    <option value="">Married</option>
-                                                    <option value="">Divorced</option>
-                                                    {% comment %} <option value="">Divorced</option> {% endcomment %}
-                                                </select>
-                                            </div>
-    
-                                            <div class="mt-6 flex">
-                                                <p for="" class="w-[23%]">home Address</p>
-                                                <textarea name="" id="" cols="30" rows="10" value={{profile.address}}>{{profile.address}}</textarea>
-                                            </div>
-    
-                                        </div>
-                                    </div>
-    
-                                </div>
-    
-                                <!-- next of kin  -->
-                                <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
-                                    <div class="w-1/2">
-                                        <h1 class="font-[500]">Next of Kin Details</h1>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Name</p>
-                                            <input type="" value={{nextofkin.name}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Relationship</p>
-                                            <input type="text" disabled value="{{nextofkin.relationship}}">
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Phone Number</p>
-                                            <input type="number" disabled value={{nextofkin.phone}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Address</p>
-                                            <textarea name="" id="" cols="30" rows="10" disabled value={{nextofkin.address}}>{{nextofkin.address}}</textarea>
-                                        </div>
-    
-                                    </div>
-
-                                    {% if profile.relative %}
-                                    <div class="w-1/2 ">
-                                        <h1 class="font-[500]">Relative Details</h1>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Name</p>
-                                            <input type="text">
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Relationship</p>
-                                            <input type="number">
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Name</p>
-                                            <input type="text">
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Relationship</p>
-                                            <input type="text">
-                                        </div>
-    
-    
-    
-                                    </div>
-                                    {% endif %}
-                                </div>
-    
-                                <!-- bank info  -->
-                                <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
-                                    {% if bankpermission %}
-                                    {% comment %} {% if request.user.profile.role == 'Finance' %} {% endcomment %}
-                                    <div class="w-1/2">
-                                        <h1 class="font-[500]">Bank Information</h1>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Account Name</p>
-                                            <input type="text" disabled value={{bank.account_name}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Bank Name</p>
-                                            <input type="text" disabled value={{bank.bank_name}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Account Number</p>
-                                            <input type="number" disabled value={{bank.account_number}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">BVN</p>
-                                            <input type="number" disabled value={{bank.BVN}}>
-                                        </div>
-                                    </div>
-
-                                    {%endif%}
-
-                                    {% if healthpermission %}
-                                    <div class="w-1/2 ">
-                                        <h1 class="font-[500]">Health Information</h1>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Blood Group</p>
-                                            <input type="text" disabled value={{profile.bloodgroup}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Genotype</p>
-                                            <input type="text" disabled value={{profile.genotype}}>
-                                        </div>
-                                        <div class="mt-6 flex">
-                                            <p for="" class="w-[23%]">Documents</p>
-                                            <input type="text">
-                                        </div>
-    
-                                    </div>
-                                    {% endif %}
-                                </div>
-    
-                                <!-- security info  -->
-                                {% comment %} {% if request.user.profile.role == 'Security' %} {% endcomment %}
-                                {% if securitypermission %}
-    
-                                <div class="flex mt-10">
-                                    <div class="w-1/2">
-                                        <h1 class="font-[500]">Security Information</h1>
-                                       <img src="./image/doc.png" alt="">
-    
-                                    </div>
-                                 
-                                </div>
-                                {% endif %}
-                            </div>
-                        </form>
-                    </section>
-                    <!-- end accounts  -->
-                    {% else %}
-
-                    <section class="flex flex-col justify-center items-center">
-                        <div class="flex flex-col items-center">
-                            <div>
-                                <div class="text-center mon">
-                                    <h1 class="font-[500] text-[40px]">1,096,073</h1>
-                                    <p>Registered Users</p>
-                                </div>
-                                <div style="display: flex; justify-content: flex-end;">
-                                    <button class="text-[#15A362] text-[16px]" >View more</button>
-                                </div>
-                            </div>
-                            <form>
-                                <div class="inpp mt-8">
-                                    <!-- <i class="icon-bell" style="color: red;"></i> -->
-                                    <img src="{% static 'image/search.png' %}" alt="" class="w-5">
-                                    <input type="text" name="search_query" placeholder="Input details e.g. name, state code">
-                                </div>
-                                <button class="bg-[#15A362] p-2 text-white rounded-lg text-[16px] w-[200px] mt-6">Search Profile</button>
-                            </form>
-                            {% comment %} {% if request.user.profile.role == 'general' %} {% endcomment %}
-                            <p>or</p>
-                        
-                            <a href='{% url "transactions" %}'><button class="text-[#15A362] text-[16px]">Get Transaction History</button></a>
-                            {% comment %} {% endif %} {% endcomment %}
-                            <div>
-
-                            </div>
-                           
-                        </div>
-                        <div class="w-full mt-8">
-                            <div class="flex justify-between w-full">
-                                <h2 class="font-[500]">Recent Searches</h2>
-                                <button class="text-[#15A362] text-[16px]">View more</button>
-                            </div>
-                            <div class="bg-[#F5F5F5] flex justify-between w-full p-4">
-                                <div>
-                                    <p>Sola Eletu</p>
-                                    <p>Sola Eletu</p>
-                                    <p>Sola Eletu</p>
-                                    <p>Sola Eletu</p>
-                                    <p>Sola Eletu</p>
-                                </div>
-                                <div>
-                                    <p>OYATUE555555</p>
-                                    <p>OYATUE555555</p>
-                                    <p>OYATUE555555</p>
-                                    <p>OYATUE555555</p>
-                                    <p>OYATUE555555</p>
-                                </div>
-                                <div>
-                                    <p>></p>
-                                    <p>></p>
-                                    <p>></p>
-                                    <p>></p>
-                                    <p>></p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-
-                    {% endif %}
-
-
-                    {% endif %}
-
-                    <!-- transaction  -->
-                    {% if page == 'transaction' %}
-                    <section style="" id="page3">
-                        <div>
-                            <h1 class="font-[500] text-[28px] text-center mb-10">TRANSACTIONS</h1>
-                        </div>
-                        <div class="flex justify-between" id="myDIV">
-                            <button class="btn active">All</button>
-                            <button class="btn">Completed</button>
-                            <button class="btn">Pending</button>
-                            <button class="btn">Failed</button>
-                        </div>
-
-                        <section class="w-[100%] mt-6">
-                            <h2 class="font-[500] text-[20px]">Transaction History</h2>
-                            <div class="w-[100%] mt-4">
-                                <table class="w-[100%]">
-                                    <thead>
-                                        <tr class="text-left">
-                                            <th>Transaction ID</th>
-                                            <th>Service</th>
-                                            <th>Amount</th>
-                                            <th>Date</th>
-                                            <th>Payer</th>
-                                            <th>Status</th>
-                                            <!-- <th></th> -->
-                                        </tr>
-                                    </thead>
-                                   <tbody>
-                                    {% for transaction in transactions %}
-                                    <tr class="text-left">
-                                        <td>{{transaction.ref}}</td>
-                                        <td>{{transaction.fee_type}}</td>
-                                        <td>N {{transaction.amount}}</td>
-                                        <td>{{transaction.created}}</td>
-                                        <td>{{transaction.profile.first_name}} {{transaction.profile.last_name}}</td>
-                                        <td>{{transaction.status}}</td>
-                                        <!-- <td>></td> -->
-                                    </tr>
-                                    {% endfor %}
-                                   </tbody>
-        
-                                    <tr>
-        
-                                    </tr>
-                                </table>
-                            </div>
-                           
-                        </section>
-                    </section>
-                    <!-- end transaction  -->
-                    {% endif %}
-
-
-              
-
-
-                <!-- payment  -->
-                
-                <!-- end payment  -->
-
-                
-
-                
-
-            </main>
         </div>
-    </div>
-
-    <script src="{% static 'js/index2.js' %}"></script>
+    </main>
 </body>
-
 </html>

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/profile.css">
+    <link rel="stylesheet" href="{% static 'styles1/profile.css' %}">
     <script>
         tailwind.config = {
             theme: {
@@ -25,7 +25,7 @@
         <!-- sidebar  -->
         <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full">
             <a href="#" class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
-                <img src="./images/image 1.png" alt="">
+                <img src="{% static '' %}images1/image 1.png" alt="">
             </a>
             <div class="flex flex-col justify-between text-black h-[90vh]">
                 <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
@@ -33,7 +33,7 @@
                     <button href="#"
                         className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
                         onclick="showPage1()">
-                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
+                        <div class="ico"> <img src=".{% static 'img/dash.png' %}" alt="" class="w-5"></div>
                         <p class="text-[#008080]">Overview</p>
                     </button>
                     <button href="#"
@@ -68,7 +68,7 @@
             <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
                 <div class="flex items-center">
                     <div class="profile_image">
-                        <img src="./images/ppp.png" alt="">
+                        <img src="{% static 'images1/ppp.png' %}" alt="">
                     </div>
                    <div>
                     <h2>CIROMA, Chukwuma Adekunle</h2>
@@ -78,12 +78,12 @@
                 <div class="flex justify-between w-2/5">
                     <div class="inp">
                         <!-- <i class="icon-bell" style="color: red;"></i> -->
-                        <img src="./images/search.png" alt="">
+                        <img src="{% static 'images1/search.png' %}" alt="">
                         <input type="text" placeholder="Search">
                     </div>
                     <div class="flex items-center w-1/5 justify-between">
-                        <img src="./images/sett.png" alt="" class="w-[20px] h-[20px]">
-                        <img src="./images/bell.png" alt="" class="w-[20px] h-[20px]">
+                        <img src="{% static 'images1/sett.png' %}" alt="" class="w-[20px] h-[20px]">
+                        <img src="{% static 'images1/bell.png' %}" alt="" class="w-[20px] h-[20px]">
                     </div>
                 </div>
 
@@ -279,7 +279,7 @@
         </div>
     </div>
 
-    <script src="./js/index.js"></script>
+    <script src="{% static 'js/index.js' %}"></script>
     <script>
         // Add active class to the current button (highlight it)
         var header = document.getElementById("myDIV");
