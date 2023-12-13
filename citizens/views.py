@@ -18,7 +18,7 @@ def register(request):
         confirm_password = request.POST['confirm_password']
 
         if password != confirm_password:
-            messages.error('password is not matching')
+            messages.error(request,'password is not matching')
             return redirect('register')
 
 

@@ -39,6 +39,13 @@
                     </div>
                   
                    </div>
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li style="color:red" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
 
                     <div>
                         <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[80%]  text-white p-2 mt-6">Sign Up</button>

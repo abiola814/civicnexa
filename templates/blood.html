@@ -35,7 +35,7 @@
 
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Blood group</label>
-                            <select name="blood_group" id="">
+                            <select name="blood_group" id="" required>
                                 <option value="">--Select Blood Group--</option>
                                 <option value="AB positive">AB positive</option>
                                 <option value="B positive">B positive</option>
@@ -53,23 +53,23 @@
                                 <label for="">Genotype</label>
                                 <div class="ml-[10%] flex justify-between w-[60%]">
                                     <div class="flex">
-                                        <input type="radio" value="AA" name="genotype">
+                                        <input type="radio" value="AA" name="genotype" required>
                                         <p>AA</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" value="AC" name="genotype">
+                                        <input type="radio" value="AC" name="genotype" required>
                                         <p>AC</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" value="AS" name="genotype">
+                                        <input type="radio" value="AS" name="genotype" required>
                                         <p>AS</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" value="SC" name="genotype">
+                                        <input type="radio" value="SC" name="genotype" required>
                                         <p>SC</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" value="SS" name="genotype">
+                                        <input type="radio" value="SS" name="genotype" required>
                                         <p>SS</p>
                                     </div>
                                 </div>
@@ -77,7 +77,7 @@
 
                             <div class="finp flex flex-col  justify-between">
                                 <label for="">Upload Health Related Documents</label>
-                                <input type="file">
+                                <input type="file" required>
                             </div>
                         </div>
 

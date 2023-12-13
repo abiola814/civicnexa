@@ -30,38 +30,38 @@
                     <div class="flex flex-col justify-between">
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">First Name</label>
-                            <input type="text" name='first_name' placeholder="Enter Your First Name">
+                            <input type="text" name='first_name' placeholder="Enter Your First Name" required>
                         </div>
                         <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
                             <label for="" class="text-[18px]">Last Name</label>
-                            <input type="text" name='last_name' placeholder="Enter Your Last Name">
+                            <input type="text" name='last_name' placeholder="Enter Your Last Name" required>
                         </div>
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Other Names</label>
-                            <input type="text" name='middle_name' placeholder="Enter Your Other Name">
+                            <input type="text" name='middle_name' placeholder="Enter Your Other Name" required>
                         </div>
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Phone No.</label>
-                            <input type="number" name='phone' placeholder="Enter Your Phone Number">
+                            <input type="number" name='phone' placeholder="Enter Your Phone Number" required>
                         </div>
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">NIN</label>
-                            <input type="number" name='nin' placeholder="Enter Your NIN">
+                            <input type="number" name='nin' placeholder="Enter Your NIN" required>
                         </div>
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Date Of Birth</label>
-                            <input type="date" name='dob' placeholder="Enter Your Date Of Birth">
+                            <input type="date" name='dob' placeholder="Enter Your Date Of Birth" required>
                         </div>
                         <div>
                             <div class="flex mt-6">
-                                <label for="">Gender</label>
-                                <div class="ml-[10%] flex justify-between w-[40%]">
+                                <div class="flex justify-between w-[40%]">
+                                    <label for="">Gender</label>
                                     <div class="flex">
-                                        <input type="radio" value='Male' name="gender">
+                                        <input type="radio" value='Male' name="gender" required>
                                         <p>Male</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" value='Female' name="gender">
+                                        <input type="radio" value='Female' name="gender" required>
                                         <p>Female</p>
                                     </div>
                                 </div>
@@ -70,15 +70,15 @@
                                 <label for="">Marital Status</label>
                                 <div class="ml-[10%] flex justify-between w-[50%]">
                                     <div class="flex">
-                                        <input type="radio" name="marital">
+                                        <input type="radio" name="marital" required>
                                         <p>Single</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" name="marital">
+                                        <input type="radio" name="marital" required>
                                         <p>Married</p>
                                     </div>
                                     <div class="flex">
-                                        <input type="radio" name="marital">
+                                        <input type="radio" name="marital" required>
                                         <p>Divorced</p>
                                     </div>
                                 </div>
@@ -87,12 +87,12 @@
 
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Occupation</label>
-                            <input type="text" name='occupation' placeholder="Enter Your Occupation">
+                            <input type="text" name='occupation' placeholder="Enter Your Occupation" required>
                         </div>
 
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">State Of Origin</label>
-                            <select name="state_of_origin" id="">
+                            <select name="state_of_origin" id="" required>
                                 <option value="">--Select state--</option>
                                 <option value="AB">Abia State</option>
                                 <option value="AD">Adamawa State</option>
@@ -135,7 +135,7 @@
 
                         <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
                             <label for="" class="text-[18px]">Home Address</label>
-                            <textarea type="text" name='address' placeholder=""> </textarea>
+                            <textarea type="text" name='address' placeholder="" required> </textarea>
                         </div>
                     </div>
 
