@@ -1,114 +1,20 @@
 from django.shortcuts import render, redirect
-from profiling.models import *
-from payment.models import Payment
+# from profiling.models import *
+# from payment.models import Payment
+from citizens.models import Profile, NextOfKin
+from django.contrib.auth.models import User
 from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import requests
-import math
 
-# Create your views here.
-def profile(request):
-    profile = UserProfile.objects.filter(user = request.user).first()
-    context = {'profile': profile}
-    return render(request,'adminpanel/adminprofile.html', context)
-
-def searchForProfile(request):
-
-    search_query = "?"   # so that nothing is return from the query at first
-
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-
-    profile = UserProfile.objects.distinct().filter(
-    Q(state_code__icontains=search_query) |
-    Q(phone__icontains=search_query) |
-    Q(user__username__icontains=search_query)
-    ).first()
-    # if profile:
-    #     nextofkin = NextOfKin.objects.filter(profile=profile).first()
-    #     # print(profile.first_name)
-    return profile, search_query
-
-def getProfile(request):
-    page='home'
-    if not request.user.is_authenticated:
-        return redirect('login')
-    profile, search_query = searchForProfile(request)
-    nextofkin = NextOfKin.objects.filter(profile=profile).first()
-    bank = Bank.objects.filter(profile=profile).first()
-
-    bankpermission = False
-    healthpermission = False
-    securitypermission = False
-
-    if request.user.profile.role.title in ['General', 'Finance']:
-        bankpermission = True
-    if request.user.profile.role.title in ['General', 'Health']:
-        healthpermission = True
-    if request.user.profile.role.title in ['General', 'Security']:
-        securitypermission = True
-
-
-    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 'bank':bank,
-               'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
-    return render (request,'adminpanel/index.html', context)
-
-
-def searchForTransaction(request):
-    search_query = ""   # so that nothing is return from the query
-
-    
-
-    if request.GET.get('search'):
-        search_query = request.GET.get('search')
-
-    transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    )
-
-    paid_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'completed')
-
-    pending_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'pending')
-
-    failed_transactions = Payment.objects.distinct().filter(
-    # Q(owner__icontains=search_query) |
-    Q(ref__icontains=search_query) |
-    Q(fee_type__icontains=search_query)
-    ).filter(status = 'failed')
-
-    return transactions, search_query, pending_transactions, paid_transactions, failed_transactions
-
-def getTransaction(request):
-    page = 'transaction'
-    if not request.user.is_staff:
-        return redirect('login')
-    
- 
-    # houses = House.objects.all()
-    transactions, search_query, pending_transactions, paid_transactions, failed_transactions = searchForTransaction(request)
- 
-    context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
-               ,'failed_transactions': failed_transactions, 'page':page}
-    return render (request,'adminpanel/index.html',context)
 
 
 def loginPage(request):
 
     page = 'login'
 
-    if request.user.is_authenticated:
+    if request.user.is_authenticated and request.user.is_staff:
         return redirect('adminpanel')
 
     if request.method == "POST":
@@ -127,20 +33,116 @@ def loginPage(request):
 
         if user is not None and user.is_staff:
             login(request, user)
-            return redirect(request.GET['next'] if 'next' in request.GET else 'adminpanel')
+            return redirect('adminpanel')
 
         else:
             messages.error(request, "You are not an admin.")
             print('something went wrong')
 
     context = {'page': page,}
-    return render(request, 'adminpanel/login.html', context)
+    return render(request, 'adminpanel/index.html', context)
+
+
+
+def profile(request):
+    profile = Profile.objects.filter(user = request.user).first()
+    context = {'profile': profile}
+    return render(request,'adminpanel/adminprofile.html', context)
+
+def searchForProfile(request):
+
+    search_query = "?"   # so that nothing is return from the query at first
+
+    if request.GET.get('search_query'):
+        search_query = request.GET.get('search_query')
+
+    profile = Profile.objects.distinct().filter(
+    Q(state_code__icontains=search_query) |
+    Q(phone__icontains=search_query) |
+    Q(user__username__icontains=search_query)
+    ).first()
+    # if profile:
+    #     nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    #     # print(profile.first_name)
+    return profile, search_query
+
+def getProfile(request):
+    page='home'
+    if not request.user.is_authenticated:
+        return redirect('login')
+    profile, search_query = searchForProfile(request)
+    nextofkin = NextOfKin.objects.filter(profile=profile).first()
+
+    bankpermission = False
+    healthpermission = False
+    securitypermission = False
+
+    if request.user.profile.role.title in ['General', 'Finance']:
+        bankpermission = True
+    if request.user.profile.role.title in ['General', 'Health']:
+        healthpermission = True
+    if request.user.profile.role.title in ['General', 'Security']:
+        securitypermission = True
+
+
+    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 
+               'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
+    return render (request,'adminpanel/profile.html', context)
 
 
 
 def logoutuser(request):
     logout(request)
     return redirect('login')
+
+# def searchForTransaction(request):
+#     search_query = ""   # so that nothing is return from the query
+
+    
+#     if request.GET.get('search'):
+#         search_query = request.GET.get('search')
+
+#     transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     )
+
+#     paid_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'completed')
+
+#     pending_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'pending')
+
+#     failed_transactions = Payment.objects.distinct().filter(
+#     # Q(owner__icontains=search_query) |
+#     Q(ref__icontains=search_query) |
+#     Q(fee_type__icontains=search_query)
+#     ).filter(status = 'failed')
+
+#     return transactions, search_query, pending_transactions, paid_transactions, failed_transactions
+
+# def getTransaction(request):
+#     page = 'transaction'
+#     if not request.user.is_staff:
+#         return redirect('login')
+    
+ 
+#     # houses = House.objects.all()
+#     transactions, search_query, pending_transactions, paid_transactions, failed_transactions = searchForTransaction(request)
+ 
+#     context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
+#                ,'failed_transactions': failed_transactions, 'page':page}
+#     return render (request,'adminpanel/index.html',context)
+
+
+
 
 
 # def getTransactionsApi(request):
@@ -232,6 +234,6 @@ def logoutuser(request):
     # # print('next; ', next)
     # context = {'transactions': transactions, 'next': next, 'previous':previous, 'custom_range': custom_range, 'current_page': current_page}
     # return render(request, 'adminpanel/usertransaction.html', context)
-        # print(transaction) 
+        # print(transaction)
 
 
