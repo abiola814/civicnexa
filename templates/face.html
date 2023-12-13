@@ -15,31 +15,30 @@
     <section class="flex flex-col justify-between h-[100vh] w-full">
         <div class="flex flex-col items-center w-full">
             <div class=" ">
-                <h1 class="text-[36px] font-bold mt-10">Generate Health Code</h1>
+                <h1 class="text-[26px] md:text-[36px] font-bold mt-10">Generate Health Code</h1>
             </div>
-            <div class="mt-10 text-[28px]">
+            <div class="mt-10 text-[22px] md:text-[28px] flex flex-col items-center w-full">
                 <h2>Face Identification Scan</h2>
 
                 <main id="camera">
-                    <canvas id="camera--sensor"></canvas>
+                    
                     <video id="camera--view" autoplay playsinline muted="true"></video>
-                    <img src="//:0" alt="" id="camera--output" />
-                    <!-- <button >⚪</button> -->
-              
+ 
 
             </div>
 
-            <div class="flex flex-col items-center">
-                <div class="">
-                    <button class="rounded border bg-[#008080] w-[200px] text-white p-3 mt-6" id="camera--trigger">Scan Face</button>
+            <div class="flex flex-col items-center" id="hidecam">
+                <div class="" onclick="show()">
+                    <button class="rounded border bg-[#008080] w-[200px] text-white p-3 mt-6" id="camera--trigger" >Scan Face</button>
                 </div>
-                <div class="mt-3 fixed" id="camera--trig">
-                    <p>Place your face directly into the centre of the webcam</p>
+                <div class="mt-3" id="camera--trig">
+                    <p class="text-[12px] md:text-[16px]">Place your face directly into the centre of the webcam</p>
                 </div>
             </div>
 
-            <div class="hidden flex flex-col items-center">
-                <div class="w-[100%] md:w-[100%]">
+            <div class="hidden flex flex-col items-center" id="show">
+                <canvas id="camera--sensor"></canvas>
+                <div class="w-[100%] md:w-[100%]" onclick="rescan()">
                     <button class="rounded border border-[#008080] w-[200px]  text-black p-3 mt-6">Scan Again</button>
                 </div>
                 <div>

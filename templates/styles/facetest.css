@@ -1,4 +1,4 @@
-html,
+/* html,
 body {
     margin: 0;
     padding: 0;
@@ -69,4 +69,15 @@ body {
     right: 20px;
     z-index: 2;
     user-select: none;
+} */
+
+#camera--sensor{
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
+}
+#camera--view{
+    height: 4em;
+    width: 5em;
+    border-radius: 50%;
 }

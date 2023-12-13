@@ -27,3 +27,12 @@
         };
         // Start the video stream when the window loads
         window.addEventListener("load", cameraStart, false);
+
+        function show(){
+            document.getElementById('show').style.display='flex'
+            document.getElementById('hidecam').style.display='none'
+        }
+        function rescan(){
+            document.getElementById('show').style.display='none'
+            document.getElementById('hidecam').style.display='flex'
+        }
