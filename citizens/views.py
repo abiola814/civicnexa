@@ -129,10 +129,11 @@ def healthInfo(request):
 def face(request):
     if request.method == 'POST':
         # Retrieve the image source from the JSON data
-        image_src = request.POST.get('imageSrc')
-        print(image_src)
+        image_src = request.FILES['image']
+        print(f"Received image data: {image_src}")
         profile = request.user.profile
         profile.image = image_src
+        profile.photo= image_src
         profile.save()
 
         # Process the image source as needed (save to the database, etc.)

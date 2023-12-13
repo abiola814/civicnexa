@@ -38,8 +38,9 @@
             </div>
 
             <div class="hidden flex flex-col items-center" id="show">
-                {% comment %} <canvas id="camera--sensor"></canvas> {% endcomment %}
-                <img src="//:0" alt="" id="camera--sensor" />
+                <canvas id="camera--sensor" class="hidden"></canvas>
+                <img src="//:0" alt="" id="camera--output" />
+                {% comment %} <img src="//:0" alt="" id="camera--sensor" /> {% endcomment %}
                 <div class="w-[100%] md:w-[100%]" onclick="rescan()">
                     <button class="rounded border border-[#008080] w-[200px]  text-black p-3 mt-6">Scan Again</button>
                 </div>
@@ -69,41 +70,72 @@
             return csrfToken;
         }
     
+
+        function convertBase64ToBlob(base64Data) {
+            // Remove the data:image/jpeg;base64, prefix
+            var base64Image = base64Data.replace(/^data:image\/jpeg;base64,/, '');
+    
+            // Convert to binary
+            var binary = atob(base64Image);
+    
+            // Create a Uint8Array from the binary data
+            var uint8Array = new Uint8Array(binary.length);
+            for (var i = 0; i < binary.length; i++) {
+                uint8Array[i] = binary.charCodeAt(i);
+            }
+    
+            // Create a Blob from the Uint8Array
+            return new Blob([uint8Array], { type: 'image/jpeg' });
+        }
+    
         function uploadImage() {
-            var imageSrc = document.getElementById('camera--sensor').src;
+            var canvas = document.getElementById('camera--sensor');
+            var imageSrc = canvas.toDataURL('image/jpeg', 0.8);  // Convert to JPEG with quality 0.8
             var csrfToken = getCSRFToken();
     
             // Check if the image source is not the default one
-            if (imageSrc !== "//:0") {
-                // Make an AJAX request to a Django view
+            if (imageSrc !== "data:,") {
+                // Convert base64 to Blob
+                var blob = convertBase64ToBlob(imageSrc);
+    
+                // Create a FormData object and append the Blob
+                var formData = new FormData();
+                formData.append('csrfmiddlewaretoken', csrfToken);
+                formData.append('image', blob, 'uploaded_image.jpeg');
+    
+                // Debugging: Log the FormData content
+                for (var pair of formData.entries()) {
+                    console.log(pair[0] + ', ' + pair[1]);
+                }
+    
+                // Create an XMLHttpRequest object
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "{% url 'face' %}", true);
-                
-                // Include the CSRF token in the request headers
-                xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-                xhr.setRequestHeader("X-CSRFToken", csrfToken);
+                xhr.open('POST', "{% url 'face' %}", true);
     
-                // Send the image source as JSON data
-                xhr.send(JSON.stringify({ imageSrc: imageSrc }));
-    
-                xhr.onreadystatechange = function () {
-                    if (xhr.readyState == 4) {
-                        if (xhr.status == 200) {
-                            // Handle the response if needed
-                            console.log("Image uploaded successfully");
-                              // Redirect to the profile page
+                // Define the onload and onerror callback functions
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Handle the success response
+                        console.log("Image uploaded successfully");
+                        // Redirect to the profile page
                         window.location.href = "{% url 'profile' %}";
-                        } else {
-                            // Handle error responses
-                            console.error("Error uploading image");
-                        }
+                    } else {
+                        // Handle error responses
+                        console.error("Error uploading image");
                     }
                 };
+    
+                xhr.onerror = function () {
+                    // Handle network errors
+                    console.error("Network error");
+                };
+    
+                // Send the FormData object containing the image data
+                xhr.send(formData);
             } else {
                 console.log("No image to upload");
             }
         }
-  
     </script>
         <footer class="pl-4">
             <div>Powered by Civicnexa software ©

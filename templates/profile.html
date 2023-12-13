@@ -15,7 +15,7 @@
       >
         <div class="flex items-center">
           <div class="profile_image">
-            <img src="{% static 'images/p2.png' %}" alt="" />
+            <img src="{{profile.image.url}}" alt="" />
           </div>
           <div>
             <p>Welcome {{profile.first_name}}</p>
