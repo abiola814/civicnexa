@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from .models import *
 from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import JsonResponse
 from django.contrib.auth.models import User
 
 
@@ -125,8 +125,19 @@ def healthInfo(request):
 
     return render(request, 'blood.html')
     
-        
+       
 def face(request):
+    if request.method == 'POST':
+        # Retrieve the image source from the JSON data
+        image_src = request.POST.get('imageSrc')
+        print(image_src)
+        profile = request.user.profile
+        profile.image = image_src
+        profile.save()
+
+        # Process the image source as needed (save to the database, etc.)
+
+        return JsonResponse({'message': 'Image sssuploaded successfully'})
     return render(request, 'face.html')
 
 
@@ -143,25 +154,22 @@ def loginPage(request):
     if request.method == "POST":
         username = request.POST['username'].lower()
         password = request.POST['password']
-
+        user = None
         try:
-            user = User.objects.filter(
-                Q(profile__state_code__icontains=username) |
-                Q(profile__phone__icontains=username) |
-                Q(user__email__icontains=username)).first()
+            user = User.objects.filter(email=username).first()
             
             username = user.username
             # user = User.objects.filter(username = username)
             # user = User.objects.get(username = username)
             # user = User.objects.get(username = username)
+            print(username,password)
 
         except:
             messages.error(request, "User does not exist.")
             print('user doest not exist')
 
-        user = authenticate(username = username, password = password)
-
-
+        
+        print(user)
         if user is not None:
             login(request, user)
             return redirect('profile')
@@ -179,7 +187,7 @@ def loginPage(request):
 def profile(request):
     profile = Profile.objects.filter(user = request.user).first() #prefetch related
     nextofkin = NextOfKin.objects.filter(profile=profile).first()
-    print(profile.bloodgroup)
+    # print(profile.bloodgroup)
     context = {'profile': profile, 'nextofkin': nextofkin}
     return render(request, 'profile.html', context)
 

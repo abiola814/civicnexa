@@ -1,214 +1,202 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PROFILE</title>
-    <link rel="stylesheet" href="{% static 'styles/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}" />
     <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body>
+  </head>
+  <body>
     <section>
-        <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
-            <div class="flex items-center">
-                <div class="profile_image">
-                    <img src="{% static 'images/p2.png' %}" alt="">
+      <header
+        class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center border-b-4"
+      >
+        <div class="flex items-center">
+          <div class="profile_image">
+            <img src="{% static 'images/p2.png' %}" alt="" />
+          </div>
+          <div>
+            <p>Welcome {{profile.first_name}}</p>
+            <h1 class="font-[500]">{{profile.health_code}}</h1>
+          </div>
+        </div>
+        <div class="">
+          <div class="flex items-center justify-between">
+            <a href="{% url 'logout' %}">Sign Out</a>
+          </div>
+        </div>
+      </header>
 
+      <section id="page2" class="px-10">
+        <form action="" class="per">
+          <div class="mt-10">
+            <div class="border-b border-[#D5D5D5] pb-10">
+              <h1 class="font-[500]">Personal Information</h1>
+              <div class="flex">
+                <div class="w-1/2">
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[20%]">First Name</p>
+                    <input type="text" value="{{profile.last_name}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[20%]">Last Name</p>
+                    <input type="text" value="{{profile.first_name}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[20%]">Other Name</p>
+                    <input type="text" value="{{profile.middle_name}}" />
+                  </div>
+                  <div class="mt-6">
+                    <label for="">Email Address</label>
+                    <input type="email" value="{{request.user.email}}" />
+                  </div>
+
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">Phone Number</p>
+                    <input type="number" value="{{profile.phone}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">Date of Birth</p>
+                    <input type="date" value="{{profile.dob}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[20%]">Gender</p>
+                    <select name="" id="">
+                      <option value="{{profile.gender}}">
+                        {{profile.gender}}
+                      </option>
+                      <option value="">Male</option>
+                      <option value="">Female</option>
+                    </select>
+                  </div>
                 </div>
-                <div>
-                    <p>Welcome {{profile.first_name}}</p>
-                    <h1 class="font-[500]">{{profile.health_code}}</h1>
+
+                <div class="w-1/2">
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">Married Status</p>
+                    <select name="" id="">
+                      <option value="">{{profile.marital_status}}</option>
+                      <option value="">Single</option>
+                      <option value="">Married</option>
+                      <option value="">Divorced</option>
+                    </select>
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">State Of Origin</p>
+                    <input type="text" value="{{profile.state_of_origin}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">State Of Residence</p>
+                    <input type="text" value="{{profile.state_residence}}" />
+                  </div>
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">Occupation</p>
+                    <input type="text" value="{{profile.occupation}}" />
+                  </div>
+
+                  <div class="mt-6 flex">
+                    <p for="" class="w-[23%]">home Address</p>
+                    <textarea name="" id="" cols="30" rows="10">
+{{profile.address}}</textarea
+                    >
+                  </div>
                 </div>
+              </div>
             </div>
-            <div class="">
-               
-                <div class="flex items-center  justify-between">
-                    <a href="logout">Sign Out</a>
+
+            <!-- next of kin  -->
+            <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
+              <div class="w-1/2">
+                <h1 class="font-[500]">Next of Kin Details</h1>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Name</p>
+                  <input type="text" value="{{nextofkin.name}}" />
                 </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Relationship</p>
+                  <input type="text" value="{{nextofkin.relationship}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Phone Number</p>
+                  <input type="number" value="{{nextofkin.phone}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Address</p>
+                  <textarea name="" id="" cols="30" rows="10">
+{{nextofkin.address}}</textarea
+                  >
+                </div>
+              </div>
+              <div class="w-1/2">
+                <h1 class="font-[500]">Health Information</h1>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Blood Group</p>
+                  <input type="text" value="{{profile.bloodgroup}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Genotype</p>
+                  <input type="text" value="{{profile.genotype}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Documents</p>
+                  <input type="text" />
+                </div>
+              </div>
             </div>
 
-        </header>
-
-        <section id="page2" class="px-10">
-           
-            <form action="" class="per">
-                <div class="mt-10 ">
-                    <div class="border-b border-[#D5D5D5] pb-10">
-                        <h1 class="font-[500]">Personal Information</h1>
-                        <div class="flex">
-                            <div class="w-1/2">
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[20%]">First Name</p>
-                                    <input type="text" value="{{profile.last_name}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[20%]">Last Name</p>
-                                    <input type="text" value="{{profile.first_name}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[20%]">Other Name</p>
-                                    <input type="text" value="{{profile.middle_name}}">
-                                </div>
-                                <div class="mt-6">
-                                    <label for="">Email Address</label>
-                                    <input type="email" value="{{request.user.email}}">
-                                </div>
-                               
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">Phone Number</p>
-                                    <input type="number" value="{{profile.phone}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">Date of Birth</p>
-                                    <input type="date" value="{{profile.dob}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[20%]">Gender</p>
-                                    <select name="" id="">
-                                        <option value="{{profile.gender}}">{{profile.gender}}</option>
-                                        <option value="">Male</option>
-                                        <option value="">Female</option>
-                                    </select>
-                                </div>
-
-                            </div>
-                            
-                            <div class="w-1/2">
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">Married Status</p>
-                                    <select name="" id="">
-                                        <option value="">{{profile.marital_status}}</option>
-                                        <option value="">Single</option>
-                                        <option value="">Married</option>
-                                        <option value="">Divorced</option>
-                                    </select>
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">State Of Origin</p>
-                                    <input type="text" value="{{profile.state_of_origin}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">State Of Residence</p>
-                                    <input type="text" value="{{profile.state_residence}}">
-                                </div>
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">Occupation</p>
-                                    <input type="text" value="{{profile.occupation}}">
-                                </div>
-                              
-
-                               
-
-                                <div class="mt-6 flex">
-                                    <p for="" class="w-[23%]">home Address</p>
-                                    <textarea name="" id="" cols="30" rows="10">{{profile.address}}</textarea>
-                                </div>
-
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- next of kin  -->
-                    <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
-                        <div class="w-1/2">
-                            <h1 class="font-[500]">Next of Kin Details</h1>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Name</p>
-                                <input type="text" value="{{nextofkin.name}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Relationship</p>
-                                <input type="text" value="{{nextofkin.relationship}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Phone Number</p>
-                                <input type="number" value="{{nextofkin.phone}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Address</p>
-                                <textarea name="" id="" cols="30" rows="10">{{nextofkin.address}}</textarea>
-                            </div>
-
-                        </div>
-                        <div class="w-1/2 ">
-                            <h1 class="font-[500]">Health Information</h1>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Blood Group</p>
-                                <input type="text" value={{profile.bloodgroup}}>
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Genotype</p>
-                                <input type="text" value="{{profile.genotype}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Documents</p>
-                                <input type="text">
-                            </div>
-                           
-
-
-
-                        </div>
-                    </div>
-
-                    <!-- bank info  -->
-                    {% comment %} <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
-                        <div class="w-1/2">
-                            <h1 class="font-[500]">Bank Information</h1>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Account Name</p>
-                                <input type="text">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Bank Name</p>
-                                <input type="text">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Account Number</p>
-                                <input type="number" value="{{profile.genotype}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">BVN</p>
-                                <input type="number" value="{{profile.BVN}}">
-                            </div>
-
-                        </div>
-                        <div class="w-1/2 ">
-                            <h1 class="font-[500]">Health Information</h1>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Blood Group</p>
-                                <input type="text" value="{{profile.blood_group}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Genotype</p>
-                                <input type="number" value="{{profile.genotype}}">
-                            </div>
-                            <div class="mt-6 flex">
-                                <p for="" class="w-[23%]">Documents</p>
-                                <input type="text">
-                            </div>
-                           
-
-
-
-                        </div>
-                    </div> {% endcomment %}
-
-                    <!-- security info  -->
-
-                    <div class="flex mt-10">
-                        <div class="w-1/2">
-                            <h1 class="font-[500]">Security Information</h1>
-                           <img src="{% static 'image/doc.png' %}" alt="">
-
-                        </div>
-                     
-                    </div>
+            <!-- bank info  -->
+            {% comment %}
+            <div class="flex mt-10 border-b border-[#D5D5D5] pb-10">
+              <div class="w-1/2">
+                <h1 class="font-[500]">Bank Information</h1>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Account Name</p>
+                  <input type="text" />
                 </div>
-            </form>
-        </section>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Bank Name</p>
+                  <input type="text" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Account Number</p>
+                  <input type="number" value="{{profile.genotype}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">BVN</p>
+                  <input type="number" value="{{profile.BVN}}" />
+                </div>
+              </div>
+              <div class="w-1/2">
+                <h1 class="font-[500]">Health Information</h1>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Blood Group</p>
+                  <input type="text" value="{{profile.blood_group}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Genotype</p>
+                  <input type="number" value="{{profile.genotype}}" />
+                </div>
+                <div class="mt-6 flex">
+                  <p for="" class="w-[23%]">Documents</p>
+                  <input type="text" />
+                </div>
+              </div>
+            </div>
+            {% endcomment %}
+
+            <!-- security info  -->
+
+            <div class="flex mt-10">
+              <div class="w-1/2">
+                <h1 class="font-[500]">Security Information</h1>
+                <img src="{% static 'image/doc.png' %}" alt="" />
+              </div>
+            </div>
+          </div>
+        </form>
+      </section>
     </section>
-</body>
+  </body>
 </html>
