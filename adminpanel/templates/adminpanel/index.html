@@ -1,53 +1,86 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Government Profiling</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'styles1/login.css' %}">
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'styles1/login.css' %}" />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    backgroundImage:{
-        'cats': 'url(./)'
-      },
-                    colors: {
-                        clifford: '#da373d',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            backgroundImage: {
+              cats: "url(./)",
+            },
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body>
+  </head>
+  <body>
     <main class="flex justify-center h-[100vh]">
-        <div class="mt-10">
-            <img src="{% static 'images1/logo.png' %}" alt="">
-            <div>
-                <h1 class="text-center text-[24px] font-[500] mt-10">Personnel Login</h1>
+      <div class="mt-10">
+        <img src="{% static 'images1/logo.png' %}" alt="" />
+        <div>
+          <h1 class="text-center text-[24px] font-[500] mt-10">
+            Personnel Login
+          </h1>
 
-
-                <form action="" class="mt-10">
-                    <div class="flex flex-col form">
-                        <label for="">Username</label>
-                        <input type="text" placeholder="Enter Your Username">
-                    </div>
-
-                    <div class="flex flex-col form mt-8">
-                        <label for="">Password</label>
-                        <input type="password" placeholder="Enter Your Username">
-                    </div>
-
-                    <div class="mt-10">
-                        <button class="bg-[#15A362] text-white w-[100%] p-2 rounded-lg">Login</button>
-                    </div>
-                </form>
+          <form method="POST" class="mt-10">
+            {% csrf_token %}
+            <div class="flex flex-col form">
+              <label for="">Username</label>
+              <input
+                type="text"
+                name="username"
+                placeholder="Enter Your Username"
+              />
             </div>
+
+            <div class="flex flex-col form mt-8">
+              <label for="">Password</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter Your Username"
+              />
+            </div>
+            {% if messages %}
+            <ul class="messages">
+              {% for message in messages %}
+              <li
+                style="color: red"
+                {%
+                if
+                message.tags
+                %}
+                class="{{ message.tags }}"
+                {%
+                endif
+                %}
+              >
+                {{ message }}
+              </li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="mt-10">
+              <button class="bg-[#15A362] text-white w-[100%] p-2 rounded-lg">
+                Login
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>

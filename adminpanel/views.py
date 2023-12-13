@@ -23,16 +23,18 @@ def loginPage(request):
 
         try:
             user = User.objects.get(username = username)
+            print(password,username)
 
         except:
             messages.error(request, "User does not exist.")
             print('user doest not exist')
 
         user = authenticate(username = username, password = password)
+        print(user)
 
-
-        if user is not None and user.is_staff:
+        if user is not None :
             login(request, user)
+            print("hhhhh")
             return redirect('adminpanel')
 
         else:
@@ -67,27 +69,28 @@ def searchForProfile(request):
     return profile, search_query
 
 def getProfile(request):
-    page='home'
-    if not request.user.is_authenticated:
-        return redirect('login')
-    profile, search_query = searchForProfile(request)
-    nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    pass
+    # page='home'
+    # if not request.user.is_authenticated:
+    #     return redirect('login')
+    # profile, search_query = searchForProfile(request)
+    # nextofkin = NextOfKin.objects.filter(profile=profile).first()
 
-    bankpermission = False
-    healthpermission = False
-    securitypermission = False
+    # bankpermission = False
+    # healthpermission = False
+    # securitypermission = False
 
-    if request.user.profile.role.title in ['General', 'Finance']:
-        bankpermission = True
-    if request.user.profile.role.title in ['General', 'Health']:
-        healthpermission = True
-    if request.user.profile.role.title in ['General', 'Security']:
-        securitypermission = True
+    # if request.user.profile.role.title in ['General', 'Finance']:
+    #     bankpermission = True
+    # if request.user.profile.role.title in ['General', 'Health']:
+    #     healthpermission = True
+    # if request.user.profile.role.title in ['General', 'Security']:
+    #     securitypermission = True
 
 
-    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 
-               'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
-    return render (request,'adminpanel/profile.html', context)
+    # context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 
+    #            'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
+    # return render (request,'adminpanel/profile.html', context)
 
 
 
