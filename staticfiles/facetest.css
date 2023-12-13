@@ -1,0 +1,30 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  user-select: none;
+}
+
+#camera--output {
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+}
+
+#camera--output {
+  transform: scaleX(-1);
+  filter: FlipH;
+}
+
+#camera--sensor {
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+}
+#camera--view {
+  height: 4em;
+  width: 5em;
+  border-radius: 50%;
+}
