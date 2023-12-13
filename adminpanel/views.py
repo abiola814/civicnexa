@@ -69,7 +69,7 @@ def searchForProfile(request):
     return profile, search_query
 
 def getProfile(request):
-    pass
+    return render(request, 'adminpanel/overview.html')
     # page='home'
     # if not request.user.is_authenticated:
     #     return redirect('login')
