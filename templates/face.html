@@ -37,7 +37,8 @@
             </div>
 
             <div class="hidden flex flex-col items-center" id="show">
-                <canvas id="camera--sensor"></canvas>
+                <canvas id="camera--sensor" class="hidden"></canvas>
+                <img src="//:0" alt="" id="camera--output" />
                 <div class="w-[100%] md:w-[100%]" onclick="rescan()">
                     <button class="rounded border border-[#008080] w-[200px]  text-black p-3 mt-6">Scan Again</button>
                 </div>
