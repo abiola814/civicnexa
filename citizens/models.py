@@ -46,6 +46,8 @@ class Profile(models.Model):
     nin = models.CharField(max_length=11, null=True)
     phone = models.CharField(max_length=50)
     occupation = models.CharField(max_length=100, null=True)
+    image = models.ImageField(blank=True,null=True,upload_to="photos")
+    face_id = models.CharField(max_length=150)
     marital_status = models.CharField(max_length=20, choices=MARITAL_STATUS, null=True)
     health_code = models.CharField(max_length=20, editable=False, null=True)
     bloodgroup = models.CharField(max_length=3, choices=BLOOD_GROUP, null=True)
