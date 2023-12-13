@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+</head>
+</head>
+
+<body>
+    <section class=" p-4">
+        <div class="flex w-full">
+            <div class="w-1/2 p-4 hidden md:block">
+                <img src="./images/Rectangle.png" alt="" class="">
+            </div>
+            <div class="flex flex-col justify-center w-full md:w-1/2">
+                <div class="flex flex-col items-center text-center  justify-center">
+                    <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+                </div>
+                <div class="my-4">
+                    <img src="./images/four.png" alt="">
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="flex flex-col justify-between">
+                        {% comment %} <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Full Name</label>
+                            <input type="text" placeholder="Enter Your Full Name">
+                        </div> {% endcomment %}
+
+
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Blood group</label>
+                            <select name="blood_group" id="">
+                                <option value="">--Select Blood Group--</option>
+                                <option value="AB positive">AB positive</option>
+                                <option value="B positive">B positive</option>
+                                <option value="A positive">A positive</option>
+                                <option value="O positive">O positive</option>
+                                <option value="AB negative">AB negative</option>
+                                <option value="B negative">B negative</option>
+                                <option value="A negative">A negative</option>
+                                <option value="O negative">O negative</option>
+                            </select>
+                        </div>
+                        <div>
+
+                            <div class="flex mt-6">
+                                <label for="">Genotype</label>
+                                <div class="ml-[10%] flex justify-between w-[60%]">
+                                    <div class="flex">
+                                        <input type="radio" value="AA" name="genotype">
+                                        <p>AA</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" value="AC" name="genotype">
+                                        <p>AC</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" value="AS" name="genotype">
+                                        <p>AS</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" value="SC" name="genotype">
+                                        <p>SC</p>
+                                    </div>
+                                    <div class="flex">
+                                        <input type="radio" value="SS" name="genotype">
+                                        <p>SS</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="finp flex flex-col  justify-between">
+                                <label for="">Upload Health Related Documents</label>
+                                <input type="file">
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                    <div>
+                        <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[90%]  text-white p-2 mt-6">Continue</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+        <footer class="pl-4">
+            <div>Powered by Civicnexa software ©
+                <script>new Date().getFullYear() > 2017 && document.write(new Date().getFullYear());</script>
+            </div>
+
+        </footer>
+    </section>
+
+</body>
+
+</html>

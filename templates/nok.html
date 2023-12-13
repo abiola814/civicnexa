@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+</head>
+</head>
+<body>
+    <section class=" p-4">
+       <div>
+        <div class="flex w-full">
+            <div class="w-1/2 p-4 hidden md:block">
+                <img src="./images/Rectangle.png" alt="" class="">
+            </div>
+            <div class="flex flex-col justify-center w-full md:w-1/2">
+                <div class="flex flex-col items-center text-center  justify-center">
+                    <h1 class="text-3xl font-bold ">Generate Health Code</h1>
+                </div>
+                <div class="my-4">
+                    <img src="./images/three.png" alt="">
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div>
+                        <h1 class="text-3xl font-bold text-[22px]">Next Of Kin</h1>
+                       <div class="flex flex-col justify-between">
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Full Name</label>
+                            <input type="text" name='name' placeholder="Enter Your First Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
+                            <label for="" class="text-[18px]">Relationship</label>
+                            <input type="text" name='relationship' placeholder="Enter Your Last Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Phone No.</label>
+                            <input type="number" name='phone' placeholder="">
+                        </div>
+    
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Address</label>
+                            <textarea type="text" name='address' placeholder="Enter Your Other Name"> </textarea>
+                        </div>
+                    </div>
+    
+                    <div>
+                        <h1 class="text-3xl font-bold text-[22px]">Relative 1</h1>
+                       <div class="flex flex-col justify-between">
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Full Name</label>
+                            <input type="text" name='rel_name' placeholder="Enter Your First Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
+                            <label for="" class="text-[18px]">Relationship</label>
+                            <input type="text" name='rel_relationship' placeholder="Enter Your Last Name">
+                        </div>
+                       
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Phone No.</label>
+                            <input type="number" name='rel_phone' placeholder="">
+                        </div>
+                    </div>
+                        
+                       </div>
+    
+                       <div>
+                        <h1 class="text-3xl font-bold text-[22px]">Relative 2</h1>
+                       <div class="flex flex-col justify-between">
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Full Name</label>
+                            <input type="text" name='rel_name1' placeholder="Enter Your First Name">
+                        </div>
+                        <div class="finpp flex flex-col md:flex-row justify-between  md:items-center">
+                            <label for="" class="text-[18px]">Relationship</label>
+                            <input type="text" name='rel_relationship1' placeholder="Enter Your Last Name">
+                        </div>
+                       
+                        <div class="finpp flex flex-col md:flex-row justify-between md:items-center">
+                            <label for="" class="text-[18px]">Phone No.</label>
+                            <input type="number" name='rel_phone1' placeholder="">
+                        </div>
+                    </div>
+                        
+                       </div>
+    
+                        <div>
+                            <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[90%]  text-white p-2 mt-6">Continue</button>
+                        </div>
+    
+                       
+                </form>
+            </div>
+           </div>
+       </div>
+       <footer class="pl-4">
+        <div>Powered by Civicnexa software © <script>new Date().getFullYear()>2017&&document.write(new Date().getFullYear());</script></div>
+  
+       </footer>
+    </section>
+    
+</body>
+</html>

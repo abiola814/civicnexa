@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Signup</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="{% static 'styles/login.css' %}">
 </head>
@@ -17,35 +17,34 @@
         </div>
         <div class="flex flex-col justify-center w-full md:w-1/2">
             <div class="flex flex-col items-center text-center  justify-center">
-                <h1 class="text-3xl font-bold ">Welcome Back!</h1>
+                <h1 class="text-3xl font-bold ">Generate Health Code</h1>
             </div>
-            <form method="POST" class="flex flex-col">
-                {% csrf_token %}
+            <div class="my-4">
+                <img src="./images/one.png" alt="">
+            </div>
+            <form method="POST">
+                    {% csrf_token %}
+                   <div class="flex flex-col justify-between">
                     <div class="finp flex flex-col">
-                        <label for="" class="text-[18px]">Phone Number/ E-mail/ Health Code</label>
-                        <input type="text" name='username' placeholder="Phone Number/ E-mail/ Health Code">
+                        <label for="" class="text-[18px]">Email</label>
+                        <input type="email" name='email' placeholder="Enter Your Email Address">
                     </div>
                     <div class="finp flex flex-col">
                         <label for="" class="text-[18px]">Password</label>
                         <input type="password" name='password' placeholder="Enter Your Password">
                     </div>
-                    <div>
-                        <a class="underline capitalize text-[#008080] text-[18px] mt-6 cursor-pointer">Forgot password</a>
+                    <div class="finp flex flex-col">
+                        <label for="" class="text-[18px]">Confirm Password</label>
+                        <input type="password" name='confirm_password' placeholder="Enter Your Password">
                     </div>
+                  
+                   </div>
 
                     <div>
-                        <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[80%] text-white p-2 mt-6">Log In</button>
+                        <button type='submit' class="rounded bg-[#008080] w-[100%] md:w-[80%]  text-white p-2 mt-6">Verify</button>
                     </div>
 
-                    <div class="flex justify-between w-[100%] md:w-[80%] items-center mt-8">
-                        <div class="line"></div>
-                        <p>or</p>
-                        <div class="line"></div>
-                    </div>
-
-                    <div>
-                        <button class="rounded border border-[#008080] w-[100%] md:w-[80%] text-black p-2 mt-6"><a href="{% url 'register' %}">Generate Health Code</a></button>
-                    </div>
+                   
             </form>
         </div>
        </div>
