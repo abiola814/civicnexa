@@ -11,7 +11,7 @@ urlpatterns = [
     path('adminpanel', views.getProfile, name='adminpanel'),
     # path('alltransactions', views.getTransactionsApi),
     # path('usertransaction', views.userTransaction),
-    path('', views.loginPage, name='login'),
+    path('', views.loginPage, name='governmentlogin'),
     path('logout', views.logoutuser, name='logout'),
 
 ]

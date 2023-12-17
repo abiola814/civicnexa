@@ -15,6 +15,6 @@ urlpatterns = [
     path('face', views.face, name='face'),
     path('finger', views.finger, name='finger'),
     # path('', views.loginPage, name='login'),
-    path('logout', views.logoutuser, name='logout'),
+    path('logout', views.logoutuser, name='logouts'),
 
 ]

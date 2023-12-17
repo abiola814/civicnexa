@@ -5,9 +5,11 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.http import JsonResponse
 from django.contrib.auth.models import User
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 
-
+@csrf_exempt
 def register(request):
     if request.user.is_authenticated:
         return redirect('adminpanel')
@@ -38,6 +40,8 @@ def register(request):
 
     return render(request, 'signup.html')
 
+@login_required
+@csrf_exempt
 def personalDetails(request):
     user = request.user
 
@@ -75,8 +79,9 @@ def personalDetails(request):
 
         return redirect('nextofkin')
     return render(request, 'personaldetails.html')
-    
 
+@login_required 
+@csrf_exempt
 def nextofKin(request):
     if request.method == 'POST':
         name = request.POST['name']
@@ -108,7 +113,8 @@ def nextofKin(request):
     
     return render(request, 'nok.html')
 
-
+@login_required 
+@csrf_exempt
 def healthInfo(request):
     profile = request.user.profile
 
@@ -124,8 +130,9 @@ def healthInfo(request):
 
 
     return render(request, 'blood.html')
-    
-       
+
+@login_required 
+@csrf_exempt      
 def face(request):
     if request.method == 'POST':
         # Retrieve the image source from the JSON data
@@ -142,9 +149,13 @@ def face(request):
     return render(request, 'face.html')
 
 
+@login_required 
+@csrf_exempt
 def finger(request):
     return render(request, 'finger.html')
 
+
+@csrf_exempt
 def loginPage(request):
 
     page = 'login'
@@ -184,6 +195,8 @@ def loginPage(request):
     return render(request, 'index.html', context)
 
 
+@login_required 
+@csrf_exempt
 # Create your views here.
 def profile(request):
     profile = Profile.objects.filter(user = request.user).first() #prefetch related
