@@ -1,0 +1,301 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'styles/profile.css' %}" />
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+
+  <body class="bg-[#F4F7FB] min-h-screen" style="background: #f4f7fb">
+    <div class="flex overflow-x-hidden total">
+      <!-- sidebar  -->
+      <aside
+        class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full"
+      >
+        <a
+          href="#"
+          class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500"
+        >
+          <img src="{% static 'images/image 1.png' %}" alt="" />
+        </a>
+        <div class="flex flex-col justify-between text-black h-[90vh]">
+          <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              onclick="showPage1()"
+            >
+              <div class="ico">
+                <img src=".{% static 'img/dash.png' %}" alt="" class="w-5" />
+              </div>
+              <p class="text-[#008080]">Overview</p>
+            </button>
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              onclick="showPage2()"
+            >
+              <div class="ico"></div>
+              <p class="">Accounts</p>
+            </button>
+
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+            >
+              <div class="ico"></div>
+              <p class="">Settings</p>
+            </button>
+          </nav>
+          <div
+            class="inline-flex items-center justify-center h-20 w-20 border-gray-700"
+          >
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              data-page="page2"
+            >
+              <div class="ico"><i data-feather="circle" class="w-5"></i></div>
+              <p class="">Log Out</p>
+            </button>
+          </div>
+        </div>
+      </aside>
+      <!-- end sidebar  -->
+
+      <div class="flex-grow text-gray-800 w-[80%]">
+        <!-- header  -->
+        <header
+          class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center border-b-4"
+        >
+          <div class="flex items-center">
+            <div class="profile_image">
+              <img src="{% static 'images/ppp.png' %}" alt="" />
+            </div>
+            <div>
+              <h2>CIROMA, Chukwuma Adekunle</h2>
+              <p>Health Personnel</p>
+            </div>
+          </div>
+          <div class="flex justify-between w-2/5">
+            <div class="inp">
+              <!-- <i class="icon-bell" style="color: red;"></i> -->
+              <img src="{% static 'images/search.png' %}" alt="" />
+              <input type="text" placeholder="Search" />
+            </div>
+            <div class="flex items-center w-1/5 justify-between">
+              <img
+                src="{% static 'images/sett.png' %}"
+                alt=""
+                class="w-[20px] h-[20px]"
+              />
+              <img
+                src="{% static 'images/bell.png' %}"
+                alt=""
+                class="w-[20px] h-[20px]"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- end header -->
+
+        <main class="overflow-x-hidden p-10">
+          <!-- home  -->
+          <section>
+            <div>
+              <div>
+                <h1 class="font-bold text-center my-6">OYATUE55555</h1>
+              </div>
+
+              <form action="">
+                <div class="border-b border-[#D5D5D5] pb-10">
+                  <h1 class="font-[700]">Personal Information</h1>
+                  <div class="flex">
+                    <div class="w-1/2">
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">First Name</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Last Name</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Other Name</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Email Address</p>
+                        <input type="email" value="" />
+                      </div>
+
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Phone Number</p>
+                        <input type="number" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Date of Birth</p>
+                        <input type="date" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Gender</p>
+                        <select name="" id="">
+                          <option value=""></option>
+                          <option value="">Male</option>
+                          <option value="">Female</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="w-1/2">
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Married Status</p>
+                        <select name="" id="">
+                          <option value=""></option>
+                          <option value="">Single</option>
+                          <option value="">Married</option>
+                          <option value="">Divorced</option>
+                        </select>
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">State Of Origin</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">State Of Residence</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Occupation</p>
+                        <input type="text" value="" />
+                      </div>
+
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">home Address</p>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- next of kin  -->
+                <div class="border-b border-[#D5D5D5] pb-10 mt-6">
+                  <div class="flex">
+                    <div class="w-1/2">
+                      <h1 class="font-[700]">Health Information</h1>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Blood Group</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Genotype</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Documents</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[20%]">Fingerprint</p>
+                        <input type="email" value="" />
+                      </div>
+                    </div>
+
+                    <div class="w-1/2">
+                      <h1 class="font-[700]">Next of Kin Details</h1>
+
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Name</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Relationship</p>
+                        <input type="text" value="" />
+                      </div>
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Phone Number</p>
+                        <input type="text" value="" />
+                      </div>
+
+                      <div class="mt-6 flex">
+                        <p for="" class="w-[23%]">Address</p>
+                        <textarea name="" id="" cols="30" rows="10"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- medical reports  -->
+                <div class="border-b border-[#D5D5D5] pb-10 mt-6">
+                  <div class="flex">
+                    <div class="w-1/2">
+                      <h1 class="font-[700]">Upload Medical Report</h1>
+                    </div>
+
+                    <div class="w-1/2">
+                      <h1 class="font-[700]">Medical Notes</h1>
+
+                      <div class="flex justify-between">
+                        <div class="border w-1/2 p-2">
+                          <h2>NOTE TITLE</h2>
+                          <p>Lorem, ipsum.</p>
+                          <p>07 Nov, 2023</p>
+                        </div>
+                        <div class="border w-1/2 p-2 ml-4">
+                          <h2>NOTE TITLE</h2>
+                          <p>Lorem, ipsum.</p>
+                          <p>07 Nov, 2023</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </section>
+
+          <!-- end home  -->
+
+          <!-- accounts  -->
+
+          <!-- end accounts  -->
+
+          <!-- transaction  -->
+
+          <!-- end transaction  -->
+        </main>
+      </div>
+    </div>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+      // Add active class to the current button (highlight it)
+      var header = document.getElementById("myDIV");
+      var btns = header.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
+  </body>
+</html>

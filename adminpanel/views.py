@@ -47,19 +47,26 @@ def loginPage(request):
 
 
 def profile(request):
+
+    if request.user.is_authenticated and request.user.is_staff:
+        return redirect('adminpanel')
     profile = Profile.objects.filter(user = request.user).first()
     context = {'profile': profile}
-    return render(request,'adminpanel/adminprofile.html', context)
+    return render(request,'adminpanel/profiles.html', context)
 
 def searchForProfile(request):
 
-    search_query = "?"   # so that nothing is return from the query at first
 
-    if request.GET.get('search_query'):
-        search_query = request.GET.get('search_query')
-
+    search_query = request.GET.get('search','')
+    # profileExist = Profile.objects.distinct().filter(
+    # Q(state_code__icontains=search_query) |
+    # Q(phone__icontains=search_query) |
+    # Q(user__username__icontains=search_query)
+    # ).exists()
+    # if profileExist:
+    #     return redirect("getrofile")
     profile = Profile.objects.distinct().filter(
-    Q(state_code__icontains=search_query) |
+    Q(health_code__icontains=search_query) |
     Q(phone__icontains=search_query) |
     Q(user__username__icontains=search_query)
     ).first()
@@ -69,12 +76,16 @@ def searchForProfile(request):
     return profile, search_query
 
 def getProfile(request):
-    return render(request, 'adminpanel/overview.html')
-    # page='home'
-    # if not request.user.is_authenticated:
-    #     return redirect('login')
-    # profile, search_query = searchForProfile(request)
-    # nextofkin = NextOfKin.objects.filter(profile=profile).first()
+    # return render(request, 'adminpanel/overview.html')
+    page='home'
+    if not request.user.is_authenticated:
+        return redirect('login')
+    query=request.GET.get("search",'')
+    if query=='':
+        return render(request, 'adminpanel/overview.html')
+
+    profile, search_query = searchForProfile(request)
+    nextofkin = NextOfKin.objects.filter(profile=profile).first()
 
     # bankpermission = False
     # healthpermission = False
@@ -88,9 +99,10 @@ def getProfile(request):
     #     securitypermission = True
 
 
-    # context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 
-    #            'bankpermission': bankpermission, 'healthpermission': healthpermission, 'securitypermission': securitypermission}
-    # return render (request,'adminpanel/profile.html', context)
+    context = {'profile': profile, 'search_query': search_query, 'page':page, 'nextofkin':nextofkin, 
+               'bankpermission': True, 'healthpermission': True, 'securitypermission': True}
+    print(context)
+    return render (request,'adminpanel/profiles.html', context)
 
 
 

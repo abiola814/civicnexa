@@ -1,147 +1,291 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/profile.css">
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static  'styles/profile.css' %}" />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        clifford: '#da373d',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              clifford: "#da373d",
+            },
+          },
+        },
+      };
     </script>
-</head>
+  </head>
 
-<body class=" bg-[#F4F7FB] min-h-screen" style="background: #F4F7FB;">
+  <body class="bg-[#F4F7FB] min-h-screen" style="background: #f4f7fb">
     <div class="flex overflow-x-hidden total">
-        <!-- sidebar  -->
-        <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full">
-            <a href="#" class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
-                <img src="./images/image 1.png" alt="">
-            </a>
-            <div class="flex flex-col justify-between text-black h-[90vh]">
-                <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+      <!-- sidebar  -->
+      <aside
+        class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full"
+      >
+        <a
+          href="#"
+          class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500"
+        >
+          <img src="{% static 'images1/image 1.png' %}" alt="" />
+        </a>
+        <div class="flex flex-col justify-between text-black h-[90vh]">
+          <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              onclick="showPage1()"
+            >
+              <div class="ico">
+                <img src="../img/dash.png' %}" alt="" class="w-5" />
+              </div>
+              <a href="{% url 'adminpanel'%}">
+                <p class="text-[#008080]">Overview</p>
+              </a>
+            </button>
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              onclick="showPage2()"
+            >
+              <div class="ico"></div>
+              <p class="">Accounts</p>
+            </button>
 
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        onclick="showPage1()">
-                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
-                        <p class="text-[#008080]">Overview</p>
-                    </button>
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        onclick="showPage2()">
-                        <div class="ico"> </div>
-                        <p class="">Accounts</p>
-                    </button>
-
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button">
-                        <div class="ico"> </div>
-                        <p class="">Settings</p>
-                    </button>
-
-
-
-                </nav>
-                <div class="inline-flex items-center justify-center h-20 w-20 border-gray-700">
-                    <button href="#"
-                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
-                        data-page="page2">
-                        <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
-                        <p class="">Log Out</p>
-                    </button>
-                </div>
-            </div>
-        </aside>
-        <!-- end sidebar  -->
-
-        <div class="flex-grow text-gray-800 w-[80%]">
-            <!-- header  -->
-            <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
-                <div class="flex items-center">
-                    <div class="profile_image">
-                        <img src="./images/ppp.png" alt="">
-                    </div>
-                    <div>
-                        <h2>CIROMA, Chukwuma Adekunle</h2>
-                        <p>Health Personnel</p>
-                    </div>
-                </div>
-                <div class="flex justify-between w-2/5">
-                    <div class="inp">
-                        <!-- <i class="icon-bell" style="color: red;"></i> -->
-                        <img src="./images/search.png" alt="">
-                        <input type="text" placeholder="Search">
-                    </div>
-                    <div class="flex items-center w-1/5 justify-between">
-                        <img src="./images/sett.png" alt="" class="w-[20px] h-[20px]">
-                        <img src="./images/bell.png" alt="" class="w-[20px] h-[20px]">
-                    </div>
-                </div>
-
-            </header>
-
-            <!-- end header -->
-
-            <main class="overflow-x-hidden p-10 w-full">
-                <div class="w-full flex">
-                    <div class="w-4/5 flex flex-col items-center ">
-                        <button class="bg-[#008080] w-[200px] p-2 text-white rounded">Look up a Profile</button>
-                        <div>
-                            <div class="google-map">
-                                <iframe src="[your unique google URL] " width="600" height="450" style="border:0;"
-                                    allowfullscreen="" loading="lazy"
-                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="2/5">
-                        <div>
-                            <h1>RESPONSE UNIT</h1>
-                        </div>
-                        <div>
-                            <h2>Mediplus Health Centre</h2>
-                            <div class="flex justify-between text-[14px]">
-                                <div>
-                                    <p>1.5km</p>
-                                </div>
-                                <div class="flex items-center text-[red]">
-                                    <p>.</p>
-                                    <p>Not Available</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </main>
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+            >
+              <div class="ico"></div>
+              <p class="">Settings</p>
+            </button>
+          </nav>
+          <div
+            class="inline-flex items-center justify-center h-20 w-20 border-gray-700"
+          >
+            <button
+              href="#"
+              className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+              data-page="page2"
+            >
+              <div class="ico"><i data-feather="circle" class="w-5"></i></div>
+              <p class="">Log Out</p>
+            </button>
+          </div>
         </div>
+      </aside>
+      <!-- end sidebar  -->
+
+      <div class="flex-grow text-gray-800 w-[80%]">
+        <!-- header  -->
+        <header
+          class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center border-b-4"
+        >
+          <div class="flex items-center">
+            <div class="profile_image">
+              <img src="{% static 'images1/ppp.png' %}" alt="" />
+            </div>
+            <div>
+              <h2>{{request.user.username}} , {{request.user.email}}</h2>
+              <p>Health Personnel</p>
+            </div>
+          </div>
+          <div class="flex justify-between w-2/5">
+            <div class="inp">
+              <!-- <i class="icon-bell" style="color: red;"></i> -->
+              <img src="{% static 'images1/search.png' %}" alt="" />
+              <input type="text" placeholder="Search" />
+            </div>
+            <div class="flex items-center w-1/5 justify-between">
+              <img
+                src="{% static 'images1/sett.png' %}"
+                alt=""
+                class="w-[20px] h-[20px]"
+              />
+              <img
+                src="{% static 'images1/bell.png' %}"
+                alt=""
+                class="w-[20px] h-[20px]"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- end header -->
+
+        <main class="overflow-x-hidden p-10 w-full">
+          <div class="w-full flex">
+            <div class="w-4/5 flex flex-col items-center">
+              <button
+                class="bg-[#008080] w-[200px] p-2 text-white rounded"
+                onclick="showModal()"
+              >
+                Look up a Profile
+              </button>
+              <div>
+                <div class="google-map">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d224368.71889143268!2d-74.0059410315918!3d40.7127760734206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2594ca70b6a81%3A0x52dcb50dc0cf3385!2sNew%20York%2C%20NY!5e0!3m2!1sen!2sus!4v1640612345671!5m2!1sen!2sus"
+                    width="600"
+                    height="450"
+                    style="border: 0"
+                    allowfullscreen=""
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+            <div class="2/5">
+              <div>
+                <h1>RESPONSE UNIT</h1>
+              </div>
+              <div>
+                <h2>Mediplus Health Centre</h2>
+                <div class="flex justify-between text-[14px]">
+                  <div>
+                    <p>1.5km</p>
+                  </div>
+                  <div class="flex items-center text-[red]">
+                    <p>.</p>
+                    <p>Not Available</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
+    <!-- modal  -->
+    <section
+      class="hidden z-2 fixed flex justify-center items-center top-0 left-0 text-white bg-[black] w-full h-full opacity-[90%]"
+      id="modal"
+    >
+      <div
+        class="mx-auto w-[562px] bg-white text-black h-[443px] rounded-[20px]"
+      >
+        <div class="flex justify-center mt-4">
+          <p>Search using</p>
+        </div>
+        <div class="flex justify-between items-center p-8">
+          <img src="{% static 'images/face.png' %}" alt="" />
+          <div>
+            <p>or</p>
+          </div>
+          <img src="{% static 'images/finger.png' %}" alt="" />
+        </div>
+        <div class="flex justify-center cursor-pointer" onclick="showCode()">
+          <p class="text-[#008080] text-bold">Use code or name instead</p>
+        </div>
 
-    <script src="./js/index.js"></script>
+        <div class="flex justify-center mt-4" style="display: none" id="code">
+          <div class="w-[70%] flex">
+            <div class="border h-10">
+              <input
+                id="searchInput"
+                type="text"
+                class="h-10 p-2 outline-none"
+              />
+            </div>
+            <button
+              id="searchButton"
+              class="bg-[#008080] text-white rounded-[8px] h-10 p-2 ml-4"
+            >
+              Search Profile
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end modal  -->
+
+    <script src="{% static 'js/index.js' %}"></script>
     <script>
-        // Add active class to the current button (highlight it)
-        var header = document.getElementById("myDIV");
-        var btns = header.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].addEventListener("click", function () {
-                var current = document.getElementsByClassName("active");
-                current[0].className = current[0].className.replace(" active", "");
-                this.className += " active";
-            });
-        }
-    </script>
-</body>
+      function initMap() {
+        // Create a map centered at a specific location (e.g., Nigeria)
+        var map = new google.maps.Map(document.getElementById("google-map"), {
+          center: { lat: 9.082, lng: 8.6753 }, // Nigeria coordinates
+          zoom: 7,
+        });
 
+        // Define an array of locations with their coordinates
+        var locations = [
+          { lat: 9.0579, lng: 7.4951 }, // Abuja
+          { lat: 6.5244, lng: 7.5086 }, // Onitsha
+          { lat: 12.0029, lng: 8.5918 }, // Sokoto
+          { lat: 11.9656, lng: 8.2841 }, // Kano
+          { lat: 4.8156, lng: 7.0498 }, // Enugu
+          { lat: 10.309, lng: 9.7275 }, // Jos
+          { lat: 7.3775, lng: 3.947 }, // Ibadan
+        ];
+
+        // Loop through the locations and add markers to the map
+        for (var i = 0; i < locations.length; i++) {
+          new google.maps.Marker({
+            position: locations[i],
+            map: map,
+            title: "Marker " + (i + 1),
+          });
+        }
+      }
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var searchInput = document.getElementById("searchInput");
+        var searchButton = document.getElementById("searchButton");
+
+        // Function to handle the search logic
+        function performSearch() {
+          // Get the value from the input field
+          var searchValue = searchInput.value;
+
+          // Perform any additional logic here if needed
+
+          // Redirect to the Django view with the search parameter
+          window.location.href =
+            "adminpanel?search=" + encodeURIComponent(searchValue);
+        }
+
+        // Attach an event listener to the button for the click event
+        searchButton.addEventListener("click", function (event) {
+          // Prevent the default button click behavior
+          event.preventDefault();
+
+          // Perform the search
+          performSearch();
+        });
+      });
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+      async
+      defer
+    ></script>
+
+    <script>
+      function showCode() {
+        document.getElementById("code").style.display = "flex";
+      }
+      function showModal() {
+        document.getElementById("modal").style.display = "flex";
+      }
+      // Add active class to the current button (highlight it)
+      var header = document.getElementById("myDIV");
+      var btns = header.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function () {
+          var current = document.getElementsByClassName("active");
+          current[0].className = current[0].className.replace(" active", "");
+          this.className += " active";
+        });
+      }
+    </script>
+  </body>
 </html>

@@ -9,6 +9,7 @@ urlpatterns = [
     # path('transaction', views.getTransaction, name='transactions'),
     path('profile', views.profile, name='adminprofile'),
     path('adminpanel', views.getProfile, name='adminpanel'),
+    # path('search/<str:search>', views.searchForProfile, name='adminpanel'),
     # path('alltransactions', views.getTransactionsApi),
     # path('usertransaction', views.userTransaction),
     path('', views.loginPage, name='governmentlogin'),
