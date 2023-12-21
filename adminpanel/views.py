@@ -7,9 +7,10 @@ from django.db.models import Q
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 
 
-
+@csrf_exempt
 def loginPage(request):
 
     page = 'login'
@@ -45,7 +46,7 @@ def loginPage(request):
     return render(request, 'adminpanel/index.html', context)
 
 
-
+@csrf_exempt
 def profile(request):
 
     if request.user.is_authenticated and request.user.is_staff:
