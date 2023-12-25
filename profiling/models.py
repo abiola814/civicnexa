@@ -28,12 +28,18 @@ class UserProfile(models.Model):
                 ('AC', 'AC'),
             ]
     
+    GENDER = [
+        ('Male', 'Male'),
+        ('Female', 'Feale'),
+    ]
+    
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE, related_name='profile')
     image = models.ImageField(upload_to=None, max_length=None, null=True, blank=True, validators=[FileExtensionValidator(allowed_extensions=['png', 'jpg'])])
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50)
     dob = models.CharField(max_length=50)
+    gender = models.CharField(max_length=50, choices=GENDER, null=True, blank=True)
     state_of_origin = models.CharField(max_length=100)
     state_of_resident = models.CharField(max_length=100)
     address = models.CharField(max_length=100, null=True)

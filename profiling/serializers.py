@@ -25,8 +25,8 @@ class SpouseSerializer(serializers.ModelSerializer):
 class BankSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bank
-        fields = '__all__'
-        # fields = ['bank_name', 'account_number']
+        fields = ['bank_name', 'BVN', 'account_name', 'account_number']
+        
 
 class NextofKinSerializer(serializers.ModelSerializer):
     class Meta:
@@ -34,13 +34,8 @@ class NextofKinSerializer(serializers.ModelSerializer):
         fields = '__all__'
         read_only_fields = ['profile']
 
-# class TransactionSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Transaction
-#         fields = '__all__'
 
 class ProfileSerializer(serializers.ModelSerializer):
-
     bank = BankSerializer(many=True, read_only=True)
     next_of_kin = NextofKinSerializer(many=True, read_only = True)
     children = ChildrenSerializer(many=True, read_only = True)
@@ -49,15 +44,45 @@ class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserProfile
         fields = '__all__'
-        # fields = ['first_name', 'last_name', 'dob', 'state_of_origin', 'state_of_resident', 'address']
         read_only_fields = ['user', 'first_name', 'last_name', 'middle_name','dob', 'state_of_origin', 'state_of_resident', 'state_code']
 
 class CreateProfileSerializer(serializers.ModelSerializer):
+    bank = BankSerializer(many=True)
+    nextofkin = NextofKinSerializer(many=True)
     class Meta:
         model = UserProfile
         # fields = '__all__'
-        fields = ['first_name', 'last_name', 'dob', 'state_of_origin', 'state_of_resident', 'address', 'state_code', 'phone']
+        fields = ['first_name', 'last_name', 'dob', 'state_of_origin', 'state_of_resident', 'address',
+                  'gender','occupation','marital_status','bloodgroup', 'genotype','state_code', 'phone', 'bank', 'nextofkin']
         read_only_fields = ['user', 'state_code']
+        
+        
+    def create(self, validated_data):
+        nextofkin = validated_data.pop('nextofkin', None)
+        bank = validated_data.pop('bank', None)
+        
+        profile = UserProfile.objects.create(
+            **validated_data
+        )
+        bank = Bank.objects.create(**bank[0], profile=profile)
+        nextofkin = NextOfKin.objects.create(**nextofkin[0], profile=profile)
+        
+        return profile
+        
+    def update(self, instance, validated_data):
+        nextofkin = validated_data.pop('nextofkin', None)
+        bank = validated_data.pop('bank', None)
+        
+        for key, value in validated_data.items():
+            setattr(instance, key, value)
+            
+        instance.save()
+        
+        bank = Bank.objects.create(**bank[0], profile=instance)
+        nextofkin = NextOfKin.objects.create(**nextofkin[0], profile=instance)
+        
+        return instance
+        # return super().update(instance, validated_data)
    
 class EditableBankSerializer(serializers.ModelSerializer):
     class Meta:
