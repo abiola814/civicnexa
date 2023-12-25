@@ -188,6 +188,17 @@ EMAIL_HOST_USER = 'yakubayatoo@gmail.com'
 EMAIL_HOST_PASSWORD = 'xRStGXdAFOhnU94z'
 DEFAULT_FROM_EMAIL = 'no-reply@civicnexa.com'
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            # 'type': 'JWT',
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    }
+}
+
 
 SIMPLE_JWT = {
    'AUTH_HEADER_TYPES': ('','JWT', 'Bearer',),
