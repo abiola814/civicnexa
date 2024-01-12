@@ -75,11 +75,9 @@ class CreateProfileSerializer(serializers.ModelSerializer):
         
         
     def create(self, validated_data):
-        print(validated_data)
         nextofkin = validated_data.pop('nextofkin', None)
         bank = validated_data.pop('bank', None)
         
-        print(validated_data)
         profile = UserProfile.objects.create(
             **validated_data
         )
