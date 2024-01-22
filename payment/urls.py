@@ -9,4 +9,5 @@ urlpatterns = [
     path('verify/<str:ref>/', views.verify_payment, name="verify-payment"),
     path('requestlogin/<str:state_code>', views.requestLogin, name='request'),
     path('payment', views.payment, name='payment'),
+    path('logout', views.logoutuser, name='userlogout'),
 ]

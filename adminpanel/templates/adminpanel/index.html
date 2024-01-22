@@ -82,13 +82,13 @@
                     <div class="profile_image">
                         <img src="{% static 'image/profile.png' %}" alt="">
                     </div>
-                    <h2>Adam Sola T.</h2>
+                    <h2>{{request.user.profile.first_name|upper}} {{request.user.profile.last_name|upper}}</h2>
                 </div>
                 <div class="flex justify-between w-2/5">
-                    <div class="inp">
+                    <div class="inp" id="searchDiv" contenteditable="true">
                         <!-- <i class="icon-bell" style="color: red;"></i> -->
                         <img src="{% static 'image/search.png' %}" alt="">
-                        <input type="text" name="search_query" placeholder="Search">
+                        <input type="text"  id="searchInput" name="search" placeholder="Search">
                     </div>
                     <div class="flex items-center w-1/5 justify-between">
                         <img src="{% static 'image/sett.png' %}" alt="" class="w-[20px] h-[20px]">
@@ -114,7 +114,7 @@
                                 <h1 class="font-[500]">{{profile.state_code}}</h1>
                             </div>
                             <div>
-                                <button class="text-[#15A362] text-[16px]">View Transaction</button>
+                                <a href="{% url 'usertransactions' profile.state_code %}"><button class="text-[#15A362] text-[16px]" onclick="showPage3()">View Transaction</button></a>
                             </div>
                         </div>
                         <form action="" class="per">
@@ -435,6 +435,30 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // Event listener for the "Enter" key within the div
+        document.getElementById("searchDiv").addEventListener("keydown", function(event) {
+            if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault(); // Prevent the default "Enter" key behavior
+    
+                // Get the text content of the div
+                // let searchText = document.getElementById("searchDiv").innerText.trim();
+                var searchText = document.getElementById("searchInput").value.trim();
+                // let searchTex = document.getElementById("transearch").innerText.trim();
+                console.log(searchText);
+                // Construct the URL with the search text
+                let url = "transaction?" + encodeURIComponent("search") + "=" + encodeURIComponent(searchText);
+    
+                // Perform the GET request by navigating to the URL
+                window.location.href = url;
+    
+                // Clear the input in the div
+                document.getElementById("searchInput").innerText = "";
+            }
+        });
+    </script>
+    
 
     <script src="{% static 'js/index2.js' %}"></script>
 </body>

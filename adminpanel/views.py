@@ -59,8 +59,6 @@ def getProfile(request):
 def searchForTransaction(request):
     search_query = ""   # so that nothing is return from the query
 
-    
-
     if request.GET.get('search'):
         search_query = request.GET.get('search')
 
@@ -102,6 +100,15 @@ def getTransaction(request):
     context = {'transactions': transactions, 'search_query': search_query, 'pending_transactions': pending_transactions,'paid_transactions': paid_transactions
                ,'failed_transactions': failed_transactions, 'page':page}
     return render (request,'adminpanel/index.html',context)
+
+
+def userTransaction(request, state_code):
+    page = 'transaction'
+    if not request.user.is_staff:
+        pass
+    transactions = Payment.objects.filter(profile__state_code=state_code)
+    context = {'transactions': transactions, 'page':page}
+    return render(request,'adminpanel/index.html',context)
 
 
 def loginPage(request):

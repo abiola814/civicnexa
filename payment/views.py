@@ -66,8 +66,8 @@ def requestLogin(request, state_code):
     profile = UserProfile.objects.filter(state_code=state_code).first()
     user = User.objects.filter(profile=profile).first()
     
-    print(user)
-    print(profile)
+    # print(user)
+    # print(profile)
     # if request.method == 'POST':
     if user is not None:
         login(request, user)
@@ -214,3 +214,6 @@ def verify_payment(request, ref: str):
     return redirect('payments:request', request.user.profile.state_code)
 
 
+def logoutuser(request):
+    logout(request)
+    return redirect('landing')

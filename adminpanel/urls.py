@@ -7,6 +7,7 @@ from . import views
 
 urlpatterns = [
     path('transaction', views.getTransaction, name='transactions'),
+    path('usertransactions/<str:state_code>', views.userTransaction, name='usertransactions'),
     path('profile', views.profile, name='adminprofile'),
     path('adminpanel', views.getProfile, name='adminpanel'),
     # path('alltransactions', views.getTransactionsApi),
