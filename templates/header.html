@@ -4,13 +4,16 @@
         <div class="profile_image">
             <img src="{% static 'images/profile.png' %}" alt="">
         </div>
-        <h2>Adam Sola T.</h2>
+        <h2 class="text-[1.2rem] font-medium">Adam Sola T.</h2>
     </div>
     <div class="flex justify-between w-2/5">
         <div class="inp">
             <!-- <i class="icon-bell" style="color: red;"></i> -->
             <img src="{% static 'images/search.png' %}" alt="">
-            <input type="text" placeholder="Search">
+            <input type="text" placeholder="Search"
+                class="bg-[#F5F5F5] border-none outline-none w-full h-10 pl-10 pr-4 
+                rounded-lg text-sm placeholder:font-[DM Sans] font-medium" 
+            />
         </div>
         <div class="flex items-center w-1/5 justify-between">
             <img src="{% static 'images/sett.png' %}" alt="" class="w-[20px] h-[20px]">

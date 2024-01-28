@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles/profile2.css' %}">
+    <!-- <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+        rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        clifford: '#da373d',
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
+</head>
+<body class=" bg-[#F4F7FB] min-h-screen" style="background: #F4F7FB;">
+    <div class="flex overflow-x-hidden total">
+        <!-- sidebar  -->
+        <aside class="hidden md:hidden lg:flex sm:flex-col w-[12%] bg-[#D5D5D5] h-full">
+            <a href="{% url 'adminpanel' %}"
+                class="flex items-center justify-center h-20 w-[100%] hover:bg-purple-500 focus:bg-purple-500">
+                <img src="{% static 'image/image 1.png' %}" alt="">
+            </a>
+            <div class="flex flex-col justify-between text-black h-[90vh]">
+                <nav class="flex flex-col justify-center mx-2 my-6 space-y-4 sidebar">
+
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-white hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                         onclick="showPage1()">
+                        <div class="ico"> <img src="../img/dash.png" alt="" class="w-5"></div>
+                        <p class="">Overview</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Accounts</p>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        onclick="showPage3()">
+                        <div class="ico"> </div>
+                        <a href='{% url "transactions" %}'><p class="">Transactions</p></a>
+                    </button>
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        >
+                        <div class="ico"> </div>
+                        <p class="">Settings</p>
+                    </button>
+                  
+
+
+                </nav>
+                <div class="inline-flex items-center justify-center h-20 w-20 border-gray-700">
+                    <button href="#"
+                        className="inline-flex flex-col items-center justify-center py-1 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg sidebar-button"
+                        data-page="page2">
+                        <div class="ico"> <i data-feather="circle" class="w-5"></i></div>
+                        <a href='{% url "logout" %}'><p class="">Log Out</p></a>
+                    </button>
+                </div>
+            </div>
+        </aside>
+        <!-- end sidebar  -->
+
+        <div class="flex-grow text-gray-800 w-[80%]">
+            <!-- header  -->
+            <header class="flex h-20 px-6 sm:px-10 flex-row justify-between items-center  border-b-4">
+                <div class="flex items-center">
+                    <div class="profile_image">
+                        <img src="{% static 'image/profile.png' %}" alt="">
+                    </div>
+                    <h2>Adam Sola T.</h2>
+                </div>
+                <div class="flex justify-between w-2/5">
+                    <div class="inp">
+                        <!-- <i class="icon-bell" style="color: red;"></i> -->
+                        <img src="{% static 'image/search.png' %}" alt="">
+                        <input type="text" name="search_query" placeholder="Search">
+                    </div>
+                    <div class="flex items-center w-1/5 justify-between">
+                        <img src="{% static 'image/sett.png' %}" alt="" class="w-[20px] h-[20px]">
+                        <img src="{% static 'image/bell.png' %}" alt="" class="w-[20px] h-[20px]">
+                    </div>
+                </div>
+
+            </header>
+
+            <main class="mx-[2.5rem] mt-[50px]">
+                <div class="flex gap-[1rem]">
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Fees</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦1.344 m</p>
+                    </div>
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Licences</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦907.8 K</p>
+                    </div>
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Fines</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦7.906 m</p>
+                    </div>
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Health</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦20.67 k</p>
+                    </div>
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Taxes</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦12.87 m</p>
+                    </div>
+                    <div class="w-[170px] h-[110px] p-[1rem] shadow-md rounded-md">
+                        <h6 class="text-[#757575] text-[1.12rem] mb-[1rem] font-normal">Education</h6>
+                        <p class="text-[#1C1C1C] text-[1.2rem] font-medium font-[DM Sans]">₦1.344 m</p>
+                    </div>
+                </div>
+                <div class="mt-[3rem] flex gap-[1rem]">
+                    <div class="p-[1rem] shadow-md rounded-lg flex-1">
+                        <canvas id="myChart" class=""></canvas>
+                    </div>
+                    <div class="p-[1rem] shadow-md rounded-lg flex-1">
+                        <canvas id="piemyChart" class=""></canvas>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        var xValues = ["0-17", "18-30", "31-45", "46-59", "60-74", "75+"];
+        var yValues = [200, 600, 400, 300, 100, 50];
+
+        new Chart("myChart", {
+        type: "bar",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: "green",
+            barThickness: 40,
+            scales: {
+                x: {
+                    grid: {
+                    offset: true
+                    }
+                }
+            },
+            data: yValues
+            }]
+        },
+        options: {
+            legend: {display: false},
+            title: {
+            display: true,
+            text: "Age Group"
+            },
+            plugins: {
+                customCanvasBackgroundColor: {
+                    color: 'transparent',
+                }
+            }
+        }
+        });
+
+        // For PIE CHARTS
+        var piexValues = ["Male",  "Female"];
+        var pieyValues = [45, 55];
+        var barColors = [
+            "#EE4141",
+            "#C141EE",
+        ];
+
+        new Chart("piemyChart", {
+        type: "doughnut",
+        data: {
+            labels: piexValues,
+            datasets: [{
+            backgroundColor: barColors,
+            data: pieyValues
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: "Gender Distribution"
+            }
+        }
+        });
+    </script>
+</body>
+</html>
